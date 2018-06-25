@@ -12,6 +12,7 @@ namespace LemonadeStand
         Weather actualWeather;
         int forecastTemperature;
         Weather forecastWeather;
+        List<Weather> weatherList;
 
         public Day()
         {
@@ -32,9 +33,10 @@ namespace LemonadeStand
         {
 
         }
-        public void PickWeather()
+        public Weather PickWeather()
         {
-
+            Random randomobject = new Random();
+            return weatherList[randomobject.Next(0, weatherList.Count - 1)];
         }
     }
 }
