@@ -37,6 +37,14 @@ namespace LemonadeStand
             }
         }
 
+        public void PrintInventory()
+        {
+            foreach (Item item in inventory)
+            {
+                Console.WriteLine($"{item.name}: {item.amountOwned} {item.unit}");
+            }
+        }
+
         public void SellCup()
         {
             inventory[0].amountOwned--;
