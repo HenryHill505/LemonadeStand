@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Rain : Weather
+    public class Rain : Weather
     {
-        Rain()
+        public Rain()
         {
             priceModifier = 0;
             customerTrafficModifier = 0;

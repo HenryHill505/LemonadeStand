@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Overcast : Weather
+    public class Overcast : Weather
     {
-        Overcast()
+        public Overcast()
         {
             priceModifier = 2;
             customerTrafficModifier = 5;

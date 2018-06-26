@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    abstract class Weather
+    public abstract class Weather
     {
         public int customerTrafficModifier;
         public string name;

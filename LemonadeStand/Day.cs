@@ -12,31 +12,45 @@ namespace LemonadeStand
         Weather actualWeather;
         int forecastTemperature;
         Weather forecastWeather;
-        List<Weather> weatherList;
+        List<Weather> weatherList = new List<Weather> { new ClearAndSunny(), new Cloudy(), new Hazy(), new Overcast(), new Rain() };
 
         public Day()
         {
-            
+            actualWeather = PickWeather();
+            actualTemperature = PickTemperature();
+            forecastWeather = ForecastWeather();
+            forecastTemperature = ForecastTemperature();
         }
 
-        public void ForecastTemperature()
+        public int ForecastTemperature()
         {
-
+            Random randomObject = new Random();
+            return actualTemperature + randomObject.Next(-10, 11);
         }
 
-        public void ForecastWeather()
+        public Weather ForecastWeather()
         {
-
+            Random randomObject = new Random();
+            if (randomObject.Next(0, 2) < 1)
+            {
+                return actualWeather;
+            }
+            else
+            {
+                return weatherList[randomObject.Next(0, weatherList.Count - 1)];
+            }
         }
 
-        public void PickTemperature()
+        public int PickTemperature()
         {
-
+            Random randomObject = new Random();
+            return 50 + randomObject.Next(0, 55);
         }
+
         public Weather PickWeather()
         {
-            Random randomobject = new Random();
-            return weatherList[randomobject.Next(0, weatherList.Count - 1)];
+            Random randomObject = new Random();
+            return weatherList[randomObject.Next(0, weatherList.Count - 1)];
         }
     }
 }
