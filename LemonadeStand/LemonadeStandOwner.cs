@@ -27,6 +27,13 @@ namespace LemonadeStand
             money = 20;
         }
 
+        public void BuyItemBundle(Item selectedItem, int bundleChoice)
+        {
+            selectedItem.amountOwned += selectedItem.bundleAndPrice[bundleChoice, 0];
+            money -= selectedItem.bundleAndPrice[bundleChoice, 1];
+            moneySpentToday -= selectedItem.bundleAndPrice[bundleChoice, 1];
+        }
+
         public void MakePitcher()
         {
             if (inventory[1].amountOwned >= todayRecipe.lemonsPerPitcher && inventory[2].amountOwned >= todayRecipe.sugarPerPitcher)
