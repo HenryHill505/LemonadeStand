@@ -8,6 +8,10 @@ namespace LemonadeStand
 {
     class Ice : Item
     {
+        public Ice()
+        {
+            bundleAndPrice = new double[,] { { 100, .98 }, { 250, 2.05 }, { 500, 3.91 } };
+        }
         public override void Spoil()
         {
             amountOwned = 0;

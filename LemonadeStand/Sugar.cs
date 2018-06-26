@@ -8,6 +8,10 @@ namespace LemonadeStand
 {
     class Sugar : Item
     {
+        public Sugar()
+        {
+            bundleAndPrice = new double[,] { { 8, .54 }, { 20, 1.74 }, { 48, 3.26 } };
+        }
         public override void Spoil()
         {
             Random randomObject = new Random();

@@ -9,10 +9,10 @@ namespace LemonadeStand
     public abstract class Item
     {
         public int amountOwned;
-        public int[,] amountAndPrice;
+        public double[,] bundleAndPrice;
         public string name;
         public string unit;
 
-        public abstract void Spoil();
+        public virtual void Spoil() { }
     }
 }
