@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    abstract class Weather
+    class Overcast : Weather
     {
-        public int customerNumberModifier;
-        public string name;
-        public int priceModifier;
+        Overcast()
+        {
+            priceModifier = 2;
+            customerNumberModifier = 5;
+        }
     }
 }

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    abstract class Weather
+    class Cloudy : Weather
     {
-        public int customerNumberModifier;
-        public string name;
-        public int priceModifier;
+        public Cloudy()
+        {
+            priceModifier = 3;
+            customerNumberModifier = 10;
+        }
     }
 }
