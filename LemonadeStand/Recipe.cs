@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Recipe
+    public class Recipe
     {
-        int lemonsPerPitcher;
-        int sugarPerPitcher;
-        int icePerCup;
+        public int lemonsPerPitcher;
+        public int sugarPerPitcher;
+        public int icePerCup;
     }
 }

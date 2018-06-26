@@ -19,5 +19,19 @@ namespace LemonadeStand
         string name;
         Recipe todayRecipe;
         Recipe yesterdayRecipe;
+
+        public LemonadeStandOwner()
+        {
+            inventory = new List<Item> { new PaperCup(), new Lemon(), new Sugar(), new Ice()};
+            money = 20;
+        }
+
+        public void SellCup()
+        {
+            inventory[0].amountOwned--;
+            inventory[3].amountOwned -= todayRecipe.icePerCup;
+            money += lemonadeCupPrice;
+            moneyEarnedToday += lemonadeCupPrice;
+        }
     }
 }
