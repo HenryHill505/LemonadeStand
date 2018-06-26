@@ -18,8 +18,8 @@ namespace LemonadeStand
         public int cupsSoldToday;
         public List<Item> inventory;
         public string name;
-        public Recipe todayRecipe;
-        public Recipe yesterdayRecipe;
+        public Recipe oldRecipe;
+        public Recipe currentRecipe;
 
         public LemonadeStandOwner()
         {
@@ -99,6 +99,11 @@ namespace LemonadeStand
                 BuyItem(userChoice);
                 Shop();
             }
+        }
+
+        public void writeRecipe()
+        {
+            printRecipe
         }
     }
 }

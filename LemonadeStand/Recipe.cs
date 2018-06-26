@@ -11,5 +11,12 @@ namespace LemonadeStand
         public int lemonsPerPitcher;
         public int sugarPerPitcher;
         public int icePerCup;
+
+        public void Print()
+        {
+            Console.WriteLine($"{lemonsPerPitcher} lemons per pitcher");
+            Console.WriteLine($"{sugarPerPitcher} cups of sugar per pitcher");
+            Console.WriteLine($"{icePerCup} ice cubes per cup");
+        }
     }
 }
