@@ -8,8 +8,9 @@ namespace LemonadeStand
 {
     abstract class Weather
     {
-        int CustomerNumberModifier;
-        string name;
-        int PriceModifier;
+        public int CustomerNumberModifier;
+        public string name;
+        public int PriceModifier;
+        public int TemperatureModifier;
     }
 }
