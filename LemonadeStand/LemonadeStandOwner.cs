@@ -50,10 +50,10 @@ namespace LemonadeStand
 
         public void MakePitcher()
         {
-            if (inventory[1].amountOwned >= todayRecipe.lemonsPerPitcher && inventory[2].amountOwned >= todayRecipe.sugarPerPitcher)
+            if (inventory[1].amountOwned >= currentRecipe.lemonsPerPitcher && inventory[2].amountOwned >= currentRecipe.sugarPerPitcher)
             {
-                inventory[1].amountOwned -= todayRecipe.lemonsPerPitcher;
-                inventory[2].amountOwned -= todayRecipe.sugarPerPitcher;
+                inventory[1].amountOwned -= currentRecipe.lemonsPerPitcher;
+                inventory[2].amountOwned -= currentRecipe.sugarPerPitcher;
                 cupsInPitcher = 10;
             }
         }
@@ -79,7 +79,7 @@ namespace LemonadeStand
         public void SellCup()
         {
             inventory[0].amountOwned--;
-            inventory[3].amountOwned -= todayRecipe.icePerCup;
+            inventory[3].amountOwned -= currentRecipe.icePerCup;
             money += lemonadeCupPrice;
             moneyEarnedToday += lemonadeCupPrice;
             if (cupsInPitcher<= 0)
@@ -103,7 +103,14 @@ namespace LemonadeStand
 
         public void writeRecipe()
         {
-            printRecipe
+            currentRecipe.Print();
+            Console.WriteLine("Done");
+            string userInput = Console.ReadLine();
+            if (userInput != "Done")
+            {
+                currentRecipe.Rewrite(userInput);                
+                writeRecipe();
+            }
         }
     }
 }
