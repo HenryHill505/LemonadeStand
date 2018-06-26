@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class LemonadeStandOwner
+    public class LemonadeStandOwner
     {
-        double lemonadeCupPrice;
-        double money;
-        double moneyEarnedToday;
-        double moneyEarnedTotal;
-        double moneySpentToday;
-        double moneySpentTotal;
-        int cupsInPitcher;
-        int cupsSoldToday;
-        List<Item> inventory;
-        string name;
-        Recipe todayRecipe;
-        Recipe yesterdayRecipe;
+        public double lemonadeCupPrice;
+        public double money;
+        public double moneyEarnedToday;
+        public double moneyEarnedTotal;
+        public double moneySpentToday;
+        public double moneySpentTotal;
+        public int cupsInPitcher;
+        public int cupsSoldToday;
+        public List<Item> inventory;
+        public string name;
+        public Recipe todayRecipe;
+        public Recipe yesterdayRecipe;
 
         public LemonadeStandOwner()
         {
