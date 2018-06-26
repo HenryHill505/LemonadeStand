@@ -27,6 +27,20 @@ namespace LemonadeStand
             money = 20;
         }
 
+        public void BuyItem(int userChoice)
+        {
+            Item chosenItem = inventory[userChoice];
+            PrintItemBundles(chosenItem);
+            Console.WriteLine("Done");
+            string userInput = Console.ReadLine();
+            if (userInput != "Done")
+            {
+                int bundleChoice = int.Parse(userInput);
+                BuyItemBundle(chosenItem, bundleChoice);
+                BuyItem(userChoice);
+            }
+        }
+
         public void BuyItemBundle(Item selectedItem, int bundleChoice)
         {
             selectedItem.amountOwned += selectedItem.bundleAndPrice[bundleChoice, 0];
@@ -46,9 +60,10 @@ namespace LemonadeStand
 
         public void PrintInventory()
         {
-            foreach (Item item in inventory)
+            for (int i = 0; i<inventory.Count; i++)
             {
-                Console.WriteLine($"{item.name}: {item.amountOwned} {item.unit}");
+                Item item = inventory[i];
+                Console.WriteLine($"{i}.{item.name}: {item.amountOwned} {item.unit}");
             }
         }
 
@@ -70,6 +85,19 @@ namespace LemonadeStand
             if (cupsInPitcher<= 0)
             {
                 MakePitcher();
+            }
+        }
+
+        public void Shop()
+        {
+            PrintInventory();
+            Console.WriteLine("Done");
+            string userInput = Console.ReadLine();
+            if (userInput != "Done")
+            {
+                int userChoice = int.Parse(userInput);
+                BuyItem(userChoice);
+                Shop();
             }
         }
     }
