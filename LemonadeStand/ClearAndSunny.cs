@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public ClearAndSunny()
         {
+            name = "Clear and Sunny";
             priceModifier = 5;
             customerTrafficModifier = 20;
         }

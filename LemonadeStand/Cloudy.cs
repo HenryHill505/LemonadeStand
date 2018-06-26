@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public Cloudy()
         {
+            name = "Cloudy";
             priceModifier = 3;
             customerTrafficModifier = 10;
         }

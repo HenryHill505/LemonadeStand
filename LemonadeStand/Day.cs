@@ -8,11 +8,11 @@ namespace LemonadeStand
 {
     class Day
     {
-        int actualTemperature;
-        Weather actualWeather;
-        int forecastTemperature;
-        Weather forecastWeather;
-        List<Weather> weatherList = new List<Weather> { new ClearAndSunny(), new Cloudy(), new Hazy(), new Overcast(), new Rain() };
+        public int actualTemperature;
+        public Weather actualWeather;
+        public int forecastTemperature;
+        public Weather forecastWeather;
+        private List<Weather> weatherList = new List<Weather> { new ClearAndSunny(), new Cloudy(), new Hazy(), new Overcast(), new Rain() };
 
         public Day()
         {
