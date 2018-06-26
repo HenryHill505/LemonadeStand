@@ -58,6 +58,34 @@ namespace LemonadeStand
             }
         }
 
+        public void ManageStand()
+        {
+            Console.WriteLine("What would you like to manage?\nShop\nRecipe\nPrice\nStart");
+            string userInput = Console.ReadLine();
+
+            switch (userInput)
+            {
+                case "Shop":
+                    Shop();
+                    ManageStand();
+                    break;
+                case "Recipe":
+                    writeRecipe();
+                    ManageStand();
+                    break;
+                case "Price":
+                    writeRecipe();
+                    ManageStand();
+                    break;
+                case "Start":
+                    break;
+                default:
+                    Console.WriteLine("Not a valid command. Please pick Shop, Recipe, Price, or Start");
+                    ManageStand();
+                    break;
+            }
+        }
+
         public void PrintInventory()
         {
             for (int i = 0; i<inventory.Count; i++)
@@ -86,6 +114,14 @@ namespace LemonadeStand
             {
                 MakePitcher();
             }
+        }
+
+        public void SetPrice()
+        {
+            Console.WriteLine("Enter new price per cup: ");
+            lemonadeCupPrice = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Price set to {lemonadeCupPrice}");
+            Console.ReadLine();
         }
 
         public void Shop()
