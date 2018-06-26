@@ -11,6 +11,8 @@ namespace LemonadeStand
         public Ice()
         {
             bundleAndPrice = new double[,] { { 100, .98 }, { 250, 2.05 }, { 500, 3.91 } };
+            name = "Ice";
+            unit = "Ice Cubes";
         }
         public override void Spoil()
         {

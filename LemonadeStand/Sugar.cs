@@ -11,6 +11,8 @@ namespace LemonadeStand
         public Sugar()
         {
             bundleAndPrice = new double[,] { { 8, .54 }, { 20, 1.74 }, { 48, 3.26 } };
+            name = "Sugar";
+            unit = "Cups";
         }
         public override void Spoil()
         {
