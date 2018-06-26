@@ -45,6 +45,15 @@ namespace LemonadeStand
             }
         }
 
+        public void PrintItemBundles(Item selectedItem)
+        {
+            Console.WriteLine($"{selectedItem.name}: ");
+            for (int i = 0; i < selectedItem.bundleAndPrice.GetLength(0); i++)
+            {
+                Console.WriteLine($"{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
+            }
+        }
+
         public void SellCup()
         {
             inventory[0].amountOwned--;

@@ -56,7 +56,8 @@ namespace LemonadeStand
             while (dayCounter < dayLimit)
             {
                 today = new Day();
-                Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}");
+                Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
+                player1.PrintInventory();
 
                 Console.ReadLine();
             }
