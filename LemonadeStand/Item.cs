@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     public abstract class Item
     {
-        public int amountOwned;
+        public double amountOwned;
         public double[,] bundleAndPrice;
         public string name;
         public string unit;
