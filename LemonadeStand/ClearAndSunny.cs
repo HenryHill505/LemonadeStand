@@ -11,7 +11,7 @@ namespace LemonadeStand
         public ClearAndSunny()
         {
             priceModifier = 5;
-            customerNumberModifier = 20;
+            customerTrafficModifier = 20;
         }
     }
 }

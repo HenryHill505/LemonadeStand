@@ -11,7 +11,7 @@ namespace LemonadeStand
         public Cloudy()
         {
             priceModifier = 3;
-            customerNumberModifier = 10;
+            customerTrafficModifier = 10;
         }
     }
 }

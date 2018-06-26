@@ -11,7 +11,7 @@ namespace LemonadeStand
         Rain()
         {
             priceModifier = 0;
-            customerNumberModifier = 0;
+            customerTrafficModifier = 0;
         }
     }
 }

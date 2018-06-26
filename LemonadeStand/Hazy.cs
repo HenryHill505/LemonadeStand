@@ -11,7 +11,7 @@ namespace LemonadeStand
         Hazy()
         {
             priceModifier = 4;
-            customerNumberModifier = 15;
+            customerTrafficModifier = 15;
         }
     }
 }

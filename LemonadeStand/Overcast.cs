@@ -11,7 +11,7 @@ namespace LemonadeStand
         Overcast()
         {
             priceModifier = 2;
-            customerNumberModifier = 5;
+            customerTrafficModifier = 5;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     abstract class Weather
     {
-        public int customerNumberModifier;
+        public int customerTrafficModifier;
         public string name;
         public int priceModifier;
     }
