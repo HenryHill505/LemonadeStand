@@ -10,6 +10,9 @@ namespace LemonadeStand
     {
         static void Main(string[] args)
         {
+            GameMaster game = new GameMaster();
+            game.RunGame();
+
             //for (int i = 0; i < 20; i++)
             //{
             //    Day testDay = new Day();

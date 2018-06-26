@@ -44,13 +44,21 @@
   <ItemGroup>
     <Compile Include="ClearAndSunny.cs" />
     <Compile Include="Cloudy.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="GameMaster.cs" />
     <Compile Include="Hazy.cs" />
+    <Compile Include="Ice.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Lemon.cs" />
+    <Compile Include="LemonadeStandOwner.cs" />
     <Compile Include="Overcast.cs" />
+    <Compile Include="PaperCup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rain.cs" />
+    <Compile Include="Recipe.cs" />
+    <Compile Include="Sugar.cs" />
     <Compile Include="Weather.cs" />
   </ItemGroup>
   <ItemGroup>

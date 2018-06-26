@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     public class GameMaster
     {
+        Day today;
         int baseDailyCustomer;
         int dayCounter;
         int dayLimit;
@@ -18,6 +19,7 @@ namespace LemonadeStand
         {
             baseDailyCustomer = 60;
             periodsPerDay = 4;
+            player1 = new LemonadeStandOwner();
         }
 
         private void DisplayRules()
@@ -53,7 +55,10 @@ namespace LemonadeStand
             GetDayLimit();
             while (dayCounter < dayLimit)
             {
+                today = new Day();
+                Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}");
 
+                Console.ReadLine();
             }
         }
     }
