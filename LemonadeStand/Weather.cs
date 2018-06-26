@@ -11,6 +11,5 @@ namespace LemonadeStand
         public int CustomerNumberModifier;
         public string name;
         public int PriceModifier;
-        public int TemperatureModifier;
     }
 }
