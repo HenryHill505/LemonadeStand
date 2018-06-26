@@ -8,10 +8,10 @@ namespace LemonadeStand
 {
     public abstract class Item
     {
-        int amountOwned;
-        int[,] amountAndPrice;
-        string name;
-        string unit;
+        public int amountOwned;
+        public int[,] amountAndPrice;
+        public string name;
+        public string unit;
 
         public abstract void Spoil();
     }
