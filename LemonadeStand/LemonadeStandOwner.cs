@@ -111,7 +111,7 @@ namespace LemonadeStand
 
         public void SellCup()
         {
-            if (cupsInPitcher<= 0)
+            if (cupsInPitcher> 0)
             {
                 if (MakePitcher())
                 {
@@ -121,6 +121,15 @@ namespace LemonadeStand
                     money += lemonadeCupPrice;
                     moneyEarnedToday += lemonadeCupPrice;
                 }
+            }
+            else
+            {
+                inventory[0].amountOwned--;
+                inventory[3].amountOwned -= currentRecipe.icePerCup;
+                cupsInPitcher--;
+                money += lemonadeCupPrice;
+                moneyEarnedToday += lemonadeCupPrice;
+
             }
         }
 
