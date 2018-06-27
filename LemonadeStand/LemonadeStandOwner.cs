@@ -51,14 +51,16 @@ namespace LemonadeStand
             moneySpentToday -= selectedItem.bundleAndPrice[bundleChoice, 1];
         }
 
-        public void MakePitcher()
+        public bool MakePitcher()
         {
             if (inventory[1].amountOwned >= currentRecipe.lemonsPerPitcher && inventory[2].amountOwned >= currentRecipe.sugarPerPitcher)
             {
                 inventory[1].amountOwned -= currentRecipe.lemonsPerPitcher;
                 inventory[2].amountOwned -= currentRecipe.sugarPerPitcher;
                 cupsInPitcher = 10;
+                return true;
             }
+            return false;
         }
 
         public void ManageStand()
@@ -109,13 +111,16 @@ namespace LemonadeStand
 
         public void SellCup()
         {
-            inventory[0].amountOwned--;
-            inventory[3].amountOwned -= currentRecipe.icePerCup;
-            money += lemonadeCupPrice;
-            moneyEarnedToday += lemonadeCupPrice;
             if (cupsInPitcher<= 0)
             {
-                MakePitcher();
+                if (MakePitcher())
+                {
+                    inventory[0].amountOwned --;
+                    inventory[3].amountOwned -= currentRecipe.icePerCup;
+                    cupsInPitcher--;
+                    money += lemonadeCupPrice;
+                    moneyEarnedToday += lemonadeCupPrice;
+                }
             }
         }
 
