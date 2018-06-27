@@ -49,9 +49,18 @@ namespace LemonadeStand
             player1.name = Console.ReadLine();
         }
 
-        private void PrintPeriodResults(int customersServed, int cupsSold)
+        private void PrintDayResults()
         {
-            Console.WriteLine($"Customers Served: {customersServed}\nCups Sold: {cupsSold}");
+            Console.WriteLine($"You sold {player1.cupsSoldToday} cups  to {player1.customersServedToday}.\n");
+            Console.WriteLine($"Today's revenue: {player1.moneyEarnedToday}\nToday's costs: {player1.moneySpentToday}");
+
+        }
+
+        private void PrintPeriodResults(int periodNumber, int customersServed, int cupsSold)
+        {
+            Console.WriteLine($"End of period {periodNumber}");
+            Console.ReadLine();
+            Console.WriteLine($"Customers Served: {customersServed}\nCups Sold: {cupsSold}\n{player1.money}\n");
             player1.PrintInventory();
             Console.ReadLine();
         }
@@ -86,8 +95,14 @@ namespace LemonadeStand
                             customersServedThisPeriod++;
                         }
                     }
-                    PrintPeriodResults(customersServedThisPeriod, cupsSoldThisPeriod);
+                    PrintPeriodResults(i, customersServedThisPeriod, cupsSoldThisPeriod);
                 }
+
+                player1.moneyEarnedTotal += player1.moneyEarnedToday;
+
+                //PrintDayResults
+
+                dayCounter++;
             }
         }
     }

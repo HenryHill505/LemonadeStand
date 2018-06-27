@@ -16,6 +16,7 @@ namespace LemonadeStand
         public double moneySpentTotal;
         public int cupsInPitcher;
         public int cupsSoldToday;
+        public int customersServedToday;
         public List<Item> inventory;
         public string name;
         public Recipe oldRecipe;
