@@ -27,6 +27,7 @@ namespace LemonadeStand
             currentRecipe = new Recipe();
             inventory = new List<Item> { new PaperCup(), new Lemon(), new Sugar(), new Ice()};
             money = 20;
+            lemonadeCupPrice = .25;
         }
 
         public void BuyItem(int userChoice)
