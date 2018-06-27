@@ -8,8 +8,8 @@ namespace LemonadeStand
 {
     public class Customer
     {
-        double maxPrice;
-        int cupsDesired;
+        public double maxPrice;
+        public int cupsDesired;
 
         public Customer()
         {

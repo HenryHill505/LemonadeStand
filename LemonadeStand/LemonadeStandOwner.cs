@@ -130,7 +130,7 @@ namespace LemonadeStand
             PrintInventory();
             Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
-            if (userInput != "Done")
+            if (userInput != "done")
             {
                 int userChoice = int.Parse(userInput);
                 BuyItem(userChoice);
@@ -143,7 +143,7 @@ namespace LemonadeStand
             currentRecipe.Print();
             Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
-            if (userInput != "Done")
+            if (userInput != "done")
             {
                 currentRecipe.Rewrite(userInput);                
                 writeRecipe();
