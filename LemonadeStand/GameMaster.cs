@@ -9,15 +9,16 @@ namespace LemonadeStand
     public class GameMaster
     {
         Day today;
-        int baseDailyCustomer;
+        int baseDailyCustomerTraffic;
         int dayCounter;
         int dayLimit;
         int periodsPerDay;
+        int todayCustomerTraffic;
         LemonadeStandOwner player1;
 
         public GameMaster()
         {
-            baseDailyCustomer = 60;
+            baseDailyCustomerTraffic = 60;
             periodsPerDay = 4;
             player1 = new LemonadeStandOwner();
         }
@@ -48,6 +49,13 @@ namespace LemonadeStand
             player1.name = Console.ReadLine();
         }
 
+        private void PrintPeriodResults(int customersServed, int cupsSold)
+        {
+            Console.WriteLine($"Customers Served: {customersServed}\nCups Sold: {cupsSold}");
+            player1.PrintInventory();
+            Console.ReadLine();
+        }
+
         public void RunGame()
         {
             DisplayRules();
@@ -58,7 +66,28 @@ namespace LemonadeStand
                 today = new Day();
                 Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
                 player1.ManageStand();
-                
+                todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
+                //period loop
+                for (int i = 0; i < periodsPerDay; i++)
+                {
+                    int customersServedThisPeriod = 0;
+                    int cupsSoldThisPeriod = 0;
+                    //customer loop
+                    for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
+                    {
+                        Customer customer = new Customer();
+                        if (player1.lemonadeCupPrice <= customer.maxPrice)
+                        {
+                            for (int k = 0; k < customer.cupsDesired; k++)
+                            {
+                                player1.SellCup();
+                                cupsSoldThisPeriod++;
+                            }
+                            customersServedThisPeriod++;
+                        }
+                    }
+                    PrintPeriodResults(customersServedThisPeriod, cupsSoldThisPeriod);
+                }
             }
         }
     }
