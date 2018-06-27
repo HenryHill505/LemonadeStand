@@ -29,7 +29,7 @@ namespace LemonadeStand
         private void ChangePrice()
         {
             Console.WriteLine("Change the price of lemonade before the next period begins? (Yes/No))");
-            string userInput = Console.ReadLine();
+            string userInput = Console.ReadLine().ToLower();
             switch (userInput)
             {
                 case "Yes":
