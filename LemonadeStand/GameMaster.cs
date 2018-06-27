@@ -33,8 +33,16 @@ namespace LemonadeStand
             switch (userInput)
             {
                 case "yes":
-                    Console.WriteLine("Enter new price");
-                    player1.lemonadeCupPrice = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        Console.WriteLine("Enter new price");
+                        player1.lemonadeCupPrice = double.Parse(Console.ReadLine());
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Error. Enter new price in decimal format");
+                        ChangePrice();
+                    }
                     
                     break;
                 case "no":
@@ -89,10 +97,8 @@ namespace LemonadeStand
 
         private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
         {
-            Console.WriteLine($"End of period {periodNumber}");
-            Console.ReadLine();
-            Console.WriteLine($"Customers Served: {customersServed}\nCups Sold: {cupsSold}\n{player1.money}\n");
-            Console.WriteLine($"Total Potential Customers this period: {TotalCustomers}");
+            Console.WriteLine($"{TotalCustomers} people pass {player1.name}'s Lemonade Stand.");
+            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bring your funds to \n{player1.money}\n");
             player1.PrintInventory();
             Console.ReadLine();
         }
@@ -113,6 +119,7 @@ namespace LemonadeStand
                 //period loop
                 for (int i = 1; i <= periodsPerDay; i++)
                 {
+                    Console.WriteLine($"Begin Period {i}");
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
