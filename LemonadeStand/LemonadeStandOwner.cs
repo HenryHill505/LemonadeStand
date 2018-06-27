@@ -23,6 +23,7 @@ namespace LemonadeStand
 
         public LemonadeStandOwner()
         {
+            currentRecipe = new Recipe();
             inventory = new List<Item> { new PaperCup(), new Lemon(), new Sugar(), new Ice()};
             money = 20;
         }
