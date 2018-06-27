@@ -142,7 +142,7 @@ namespace LemonadeStand
         {
             currentRecipe.Print();
             Console.WriteLine("Done");
-            string userInput = Console.ReadLine();
+            string userInput = Console.ReadLine().ToLower();
             if (userInput != "Done")
             {
                 currentRecipe.Rewrite(userInput);                
