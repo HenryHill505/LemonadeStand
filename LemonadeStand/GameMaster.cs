@@ -88,10 +88,10 @@ namespace LemonadeStand
                 Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
                 player1.ManageStand();
                 todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
-                Console.WriteLine($"Begin Day {dayCounter+1}");
+                Console.WriteLine($"Begin Day {dayCounter}");
                 Console.ReadLine();
                 //period loop
-                for (int i = 0; i < periodsPerDay; i++)
+                for (int i = 1; i <= periodsPerDay; i++)
                 {
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
