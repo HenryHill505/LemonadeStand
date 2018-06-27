@@ -32,12 +32,12 @@ namespace LemonadeStand
             string userInput = Console.ReadLine().ToLower();
             switch (userInput)
             {
-                case "Yes":
+                case "yes":
                     Console.WriteLine("Enter new price");
                     player1.lemonadeCupPrice = int.Parse(Console.ReadLine());
                     
                     break;
-                case "No":
+                case "no":
                     break;
                 default:
                     Console.WriteLine("Please Enter Yes or No");
