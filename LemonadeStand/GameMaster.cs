@@ -52,8 +52,8 @@ namespace LemonadeStand
         private void PrintDayResults()
         {
             Console.WriteLine($"You sold {player1.cupsSoldToday} cups  to {player1.customersServedToday}.\n");
-            Console.WriteLine($"Today's revenue: {player1.moneyEarnedToday}\nToday's costs: {player1.moneySpentToday}");
-
+            Console.WriteLine($"Today's revenue: {player1.moneyEarnedToday}\nToday's costs: {player1.moneySpentToday}\nToday's net profit: {player1.moneyEarnedToday - player1.moneySpentToday}");
+            Console.WriteLine($"Total revenue: {player1.moneyEarnedTotal}\nTotal costs: {player1.moneySpentTotal}\nTotal net profit: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
         }
 
         private void PrintPeriodResults(int periodNumber, int customersServed, int cupsSold)
@@ -97,13 +97,20 @@ namespace LemonadeStand
                     }
                     PrintPeriodResults(i, customersServedThisPeriod, cupsSoldThisPeriod);
                 }
-
-                player1.moneyEarnedTotal += player1.moneyEarnedToday;
-
-                //PrintDayResults
-
-                dayCounter++;
+                WrapUpDay();
             }
+        }
+
+        public void WrapUpDay()
+        {
+            player1.moneyEarnedTotal += player1.moneyEarnedToday;
+            player1.moneySpentTotal += player1.moneySpentToday;
+            PrintDayResults();
+            player1.moneyEarnedToday = 0;
+            player1.moneySpentToday = 0;
+            player1.cupsSoldToday = 0;
+            player1.customersServedToday = 0;
+            dayCounter++;
         }
     }
 }
