@@ -58,6 +58,13 @@ namespace LemonadeStand
             Console.WriteLine($"Total revenue: {player1.moneyEarnedTotal}\nTotal costs: {player1.moneySpentTotal}\nTotal net profit: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
         }
 
+        private void PrintGameResults()
+        {
+            Console.WriteLine("End of Season Report");
+            Console.WriteLine($"Total Revenue: {player1.moneyEarnedTotal}\nTotal Costs: {player1.moneySpentTotal}\nNet Profit/Loss: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
+            Console.ReadLine();
+        }
+
         private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
         {
             Console.WriteLine($"End of period {periodNumber}");
@@ -112,6 +119,7 @@ namespace LemonadeStand
                 WrapUpDay();
                 Console.ReadLine();
             }
+            PrintGameResults();
         }
 
         public void WrapUpDay()
