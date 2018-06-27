@@ -123,7 +123,6 @@ namespace LemonadeStand
                     money += lemonadeCupPrice;
                     moneyEarnedToday += lemonadeCupPrice;
                     cupsSoldThisPeriod++;
-                    cupsSoldToday++;
                     customersServedThisPeriod++;
                     customersServedToday++;
                 }
@@ -136,7 +135,6 @@ namespace LemonadeStand
                     {
                         inventory[3].amountOwned -= currentRecipe.icePerCup;
                         cupsInPitcher--;
-                        cupsSoldToday++;
                         money += lemonadeCupPrice;
                         moneyEarnedToday += lemonadeCupPrice;
                         cupsSoldThisPeriod++;
