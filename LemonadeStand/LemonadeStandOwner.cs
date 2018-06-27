@@ -32,8 +32,8 @@ namespace LemonadeStand
             Item chosenItem = inventory[userChoice];
             PrintItemBundles(chosenItem);
             Console.WriteLine("Done");
-            string userInput = Console.ReadLine();
-            if (userInput != "Done")
+            string userInput = Console.ReadLine().ToLower();
+            if (userInput != "done")
             {
                 int bundleChoice = int.Parse(userInput);
                 BuyItemBundle(chosenItem, bundleChoice);
@@ -61,23 +61,23 @@ namespace LemonadeStand
         public void ManageStand()
         {
             Console.WriteLine("What would you like to manage?\nShop\nRecipe\nPrice\nStart");
-            string userInput = Console.ReadLine();
+            string userInput = Console.ReadLine().ToLower();
 
             switch (userInput)
             {
-                case "Shop":
+                case "shop":
                     Shop();
                     ManageStand();
                     break;
-                case "Recipe":
+                case "recipe":
                     writeRecipe();
                     ManageStand();
                     break;
-                case "Price":
+                case "price":
                     writeRecipe();
                     ManageStand();
                     break;
-                case "Start":
+                case "start":
                     break;
                 default:
                     Console.WriteLine("Not a valid command. Please pick Shop, Recipe, Price, or Start");

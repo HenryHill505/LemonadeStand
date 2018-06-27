@@ -57,8 +57,7 @@ namespace LemonadeStand
             {
                 today = new Day();
                 Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
-                player1.PrintInventory();
-                player1.Shop();
+                player1.ManageStand();
                 Console.ReadLine();
             }
         }
