@@ -9,6 +9,7 @@ namespace LemonadeStand
     class Ice : Item
     {
         public Ice()
+            : base()
         {
             bundleAndPrice = new double[,] { { 100, .98 }, { 250, 2.05 }, { 500, 3.91 } };
             name = "Ice";

@@ -11,10 +11,12 @@ namespace LemonadeStand
         public double maxPrice;
         public int cupsDesired;
 
-        public Customer()
+        public Customer(Random randomizer)
         {
-            maxPrice = SetMaxPrice();
+
+            maxPrice = SetMaxPrice(randomizer);
             cupsDesired = SetCupsDesired();
+            Console.WriteLine("Customer max price: " + maxPrice);
         }
 
         public int SetCupsDesired()
@@ -22,10 +24,9 @@ namespace LemonadeStand
             return 1;
         }
 
-        public double SetMaxPrice()
+        public double SetMaxPrice(Random randomizer)
         {
-            Random randomObject = new Random();
-            double basePrice = randomObject.Next(0, 6) * .1 + randomObject.Next(0, 10) * .01;
+            double basePrice = randomizer.Next(0, 6) * .1 + randomizer.Next(0, 10) * .01;
             return basePrice;
         }
     }

@@ -15,12 +15,14 @@ namespace LemonadeStand
         int periodsPerDay;
         int todayCustomerTraffic;
         LemonadeStandOwner player1;
+        Random randomizer;
 
         public GameMaster()
         {
             baseDailyCustomerTraffic = 60;
             periodsPerDay = 4;
             player1 = new LemonadeStandOwner();
+            randomizer = new Random();
         }
 
         private void DisplayRules()
@@ -56,11 +58,12 @@ namespace LemonadeStand
             Console.WriteLine($"Total revenue: {player1.moneyEarnedTotal}\nTotal costs: {player1.moneySpentTotal}\nTotal net profit: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
         }
 
-        private void PrintPeriodResults(int periodNumber, int customersServed, int cupsSold)
+        private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
         {
             Console.WriteLine($"End of period {periodNumber}");
             Console.ReadLine();
             Console.WriteLine($"Customers Served: {customersServed}\nCups Sold: {cupsSold}\n{player1.money}\n");
+            Console.WriteLine($"Total Potential Customers this period: {TotalCustomers}");
             player1.PrintInventory();
             Console.ReadLine();
         }
@@ -76,15 +79,19 @@ namespace LemonadeStand
                 Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
                 player1.ManageStand();
                 todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
+                Console.WriteLine($"Begin Day {dayCounter}");
+                Console.ReadLine();
                 //period loop
                 for (int i = 0; i < periodsPerDay; i++)
                 {
                     int customersServedThisPeriod = 0;
                     int cupsSoldThisPeriod = 0;
+                    int customersUnservedThisPeriod = 0;
+
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
-                        Customer customer = new Customer();
+                        Customer customer = new Customer(randomizer);
                         if (player1.lemonadeCupPrice <= customer.maxPrice)
                         {
                             for (int k = 0; k < customer.cupsDesired; k++)
@@ -93,11 +100,17 @@ namespace LemonadeStand
                                 cupsSoldThisPeriod++;
                             }
                             customersServedThisPeriod++;
+                            player1.customersServedToday++;
+                        }
+                        else
+                        {
+                            customersUnservedThisPeriod++;
                         }
                     }
-                    PrintPeriodResults(i, customersServedThisPeriod, cupsSoldThisPeriod);
+                    PrintPeriodResults(i, customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, cupsSoldThisPeriod);
                 }
                 WrapUpDay();
+                Console.ReadLine();
             }
         }
 

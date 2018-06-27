@@ -13,6 +13,12 @@ namespace LemonadeStand
         public string name;
         public string unit;
 
+        //Constructor is here to streamline testing. Delete upon project completion
+        public Item()
+        {
+            amountOwned = 500;
+        }
+
         public virtual void Spoil() { }
     }
 }

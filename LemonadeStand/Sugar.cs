@@ -9,6 +9,7 @@ namespace LemonadeStand
     class Sugar : Item
     {
         public Sugar()
+            :base()
         {
             bundleAndPrice = new double[,] { { 8, .54 }, { 20, 1.74 }, { 48, 3.26 } };
             name = "Sugar";
