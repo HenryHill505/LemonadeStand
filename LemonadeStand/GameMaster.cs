@@ -98,7 +98,7 @@ namespace LemonadeStand
         private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
         {
             Console.WriteLine($"{TotalCustomers} people pass {player1.name}'s Lemonade Stand.");
-            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bring your funds to \n{player1.money}\n");
+            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bring your funds to {player1.money}\n");
             player1.PrintInventory();
             Console.ReadLine();
         }
