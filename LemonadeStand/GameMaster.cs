@@ -20,6 +20,7 @@ namespace LemonadeStand
         public GameMaster()
         {
             baseDailyCustomerTraffic = 60;
+            dayCounter = 1;
             periodsPerDay = 4;
             player1 = new LemonadeStandOwner();
             randomizer = new Random();
@@ -53,6 +54,7 @@ namespace LemonadeStand
 
         private void PrintDayResults()
         {
+            Console.WriteLine($"Day {dayCounter} results");
             Console.WriteLine($"You sold {player1.cupsSoldToday} cups  to {player1.customersServedToday}.\n");
             Console.WriteLine($"Today's revenue: {player1.moneyEarnedToday}\nToday's costs: {player1.moneySpentToday}\nToday's net profit: {player1.moneyEarnedToday - player1.moneySpentToday}");
             Console.WriteLine($"Total revenue: {player1.moneyEarnedTotal}\nTotal costs: {player1.moneySpentTotal}\nTotal net profit: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
@@ -80,13 +82,13 @@ namespace LemonadeStand
             DisplayRules();
             GetPlayerName();
             GetDayLimit();
-            while (dayCounter < dayLimit)
+            while (dayCounter <= dayLimit)
             {
                 today = new Day();
                 Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
                 player1.ManageStand();
                 todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
-                Console.WriteLine($"Begin Day {dayCounter}");
+                Console.WriteLine($"Begin Day {dayCounter+1}");
                 Console.ReadLine();
                 //period loop
                 for (int i = 0; i < periodsPerDay; i++)
