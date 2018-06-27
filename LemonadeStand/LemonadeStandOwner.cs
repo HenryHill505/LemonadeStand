@@ -101,7 +101,7 @@ namespace LemonadeStand
             Console.WriteLine($"{selectedItem.name}: ");
             for (int i = 0; i < selectedItem.bundleAndPrice.GetLength(0); i++)
             {
-                Console.WriteLine($"{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
+                Console.WriteLine($"{i}.{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
             }
         }
 
@@ -129,7 +129,7 @@ namespace LemonadeStand
         {
             PrintInventory();
             Console.WriteLine("Done");
-            string userInput = Console.ReadLine();
+            string userInput = Console.ReadLine().ToLower();
             if (userInput != "Done")
             {
                 int userChoice = int.Parse(userInput);
