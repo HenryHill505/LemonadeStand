@@ -15,7 +15,9 @@ namespace LemonadeStand
         public double moneySpentToday;
         public double moneySpentTotal;
         public int cupsInPitcher;
+        public int cupsSoldThisPeriod;
         public int cupsSoldToday;
+        public int customersServedThisPeriod;
         public int customersServedToday;
         public List<Item> inventory;
         public string name;
@@ -120,6 +122,9 @@ namespace LemonadeStand
                     cupsInPitcher--;
                     money += lemonadeCupPrice;
                     moneyEarnedToday += lemonadeCupPrice;
+                    cupsSoldThisPeriod++;
+                    customersServedThisPeriod++;
+                    customersServedToday++;
                 }
             }
             else
@@ -133,6 +138,9 @@ namespace LemonadeStand
                         cupsSoldToday++;
                         money += lemonadeCupPrice;
                         moneyEarnedToday += lemonadeCupPrice;
+                        cupsSoldThisPeriod++;
+                        customersServedThisPeriod++;
+                        customersServedToday++;
                     }
                 }
             }
