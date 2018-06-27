@@ -123,6 +123,7 @@ namespace LemonadeStand
                     money += lemonadeCupPrice;
                     moneyEarnedToday += lemonadeCupPrice;
                     cupsSoldThisPeriod++;
+                    cupsSoldToday++;
                     customersServedThisPeriod++;
                     customersServedToday++;
                 }
@@ -139,6 +140,7 @@ namespace LemonadeStand
                         money += lemonadeCupPrice;
                         moneyEarnedToday += lemonadeCupPrice;
                         cupsSoldThisPeriod++;
+                        cupsSoldToday++;
                         customersServedThisPeriod++;
                         customersServedToday++;
                     }
@@ -164,6 +166,14 @@ namespace LemonadeStand
                 int userChoice = int.Parse(userInput);
                 BuyItem(userChoice);
                 Shop();
+            }
+        }
+
+        public void SpoilItems()
+        {
+            foreach(Item item in inventory)
+            {
+                item.Spoil();
             }
         }
 

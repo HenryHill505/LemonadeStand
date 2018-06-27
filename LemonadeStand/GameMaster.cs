@@ -101,7 +101,7 @@ namespace LemonadeStand
                             {
                                 player1.SellCup();
                             }
-                         }
+                        }
                     }
                     WrapUpPeriod(i);                    
                 }
@@ -116,6 +116,7 @@ namespace LemonadeStand
             player1.moneyEarnedTotal += player1.moneyEarnedToday;
             player1.moneySpentTotal += player1.moneySpentToday;
             PrintDayResults();
+            player1.SpoilItems();
             player1.moneyEarnedToday = 0;
             player1.moneySpentToday = 0;
             player1.cupsSoldToday = 0;
