@@ -99,7 +99,7 @@ namespace LemonadeStand
                         {
                             for (int k = 0; k < customer.cupsDesired; k++)
                             {
-                                player1.SellCup();
+                                player1.ServeCustomer();
                             }
                         }
                     }

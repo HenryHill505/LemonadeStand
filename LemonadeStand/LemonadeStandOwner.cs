@@ -113,35 +113,30 @@ namespace LemonadeStand
 
         public void SellCup()
         {
+            if (inventory[0].amountOwned > 0 && inventory[3].amountOwned > currentRecipe.icePerCup)
+            {
+                inventory[0].amountOwned--;
+                inventory[3].amountOwned -= currentRecipe.icePerCup;
+                cupsInPitcher--;
+                money += lemonadeCupPrice;
+                moneyEarnedToday += lemonadeCupPrice;
+                cupsSoldThisPeriod++;
+                customersServedThisPeriod++;
+                customersServedToday++;
+            }
+        }
+
+        public void ServeCustomer()
+        {
             if (cupsInPitcher> 0)
             {
-                if (inventory[0].amountOwned > 0 && inventory[3].amountOwned > currentRecipe.icePerCup)
-                {
-                    inventory[0].amountOwned--;
-                    inventory[3].amountOwned -= currentRecipe.icePerCup;
-                    cupsInPitcher--;
-                    money += lemonadeCupPrice;
-                    moneyEarnedToday += lemonadeCupPrice;
-                    cupsSoldThisPeriod++;
-                    customersServedThisPeriod++;
-                    customersServedToday++;
-                }
+                SellCup();
             }
             else
             {
                 if (MakePitcher())
                 {
-                    if (inventory[0].amountOwned > 0 && inventory[3].amountOwned > currentRecipe.icePerCup)
-                    {
-                        inventory[3].amountOwned -= currentRecipe.icePerCup;
-                        cupsInPitcher--;
-                        money += lemonadeCupPrice;
-                        moneyEarnedToday += lemonadeCupPrice;
-                        cupsSoldThisPeriod++;
-                        cupsSoldToday++;
-                        customersServedThisPeriod++;
-                        customersServedToday++;
-                    }
+                    SellCup();
                 }
             }
         }
