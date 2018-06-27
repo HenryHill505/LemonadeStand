@@ -16,7 +16,6 @@ namespace LemonadeStand
 
             maxPrice = SetMaxPrice(randomizer);
             cupsDesired = SetCupsDesired();
-            Console.WriteLine("Customer max price: " + maxPrice);
         }
 
         public int SetCupsDesired()
