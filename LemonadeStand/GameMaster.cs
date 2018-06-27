@@ -91,10 +91,6 @@ namespace LemonadeStand
                 //period loop
                 for (int i = 0; i < periodsPerDay; i++)
                 {
-                    int customersServedThisPeriod = 0;
-                    int cupsSoldThisPeriod = 0;
-                    int customersUnservedThisPeriod = 0;
-
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
@@ -104,17 +100,13 @@ namespace LemonadeStand
                             for (int k = 0; k < customer.cupsDesired; k++)
                             {
                                 player1.SellCup();
-                                cupsSoldThisPeriod++;
+                                player1.cupsSoldThisPeriod++;
                             }
-                            customersServedThisPeriod++;
+                            player1.customersServedThisPeriod++;
                             player1.customersServedToday++;
                         }
-                        else
-                        {
-                            customersUnservedThisPeriod++;
-                        }
                     }
-                    PrintPeriodResults(i, customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, cupsSoldThisPeriod);
+                    PrintPeriodResults(i, player1.customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, player1.cupsSoldThisPeriod);
                 }
                 WrapUpDay();
                 Console.ReadLine();
