@@ -113,23 +113,22 @@ namespace LemonadeStand
         {
             if (cupsInPitcher> 0)
             {
-                if (MakePitcher())
-                {
-                    inventory[0].amountOwned --;
-                    inventory[3].amountOwned -= currentRecipe.icePerCup;
-                    cupsInPitcher--;
-                    money += lemonadeCupPrice;
-                    moneyEarnedToday += lemonadeCupPrice;
-                }
-            }
-            else
-            {
                 inventory[0].amountOwned--;
                 inventory[3].amountOwned -= currentRecipe.icePerCup;
                 cupsInPitcher--;
                 money += lemonadeCupPrice;
                 moneyEarnedToday += lemonadeCupPrice;
-
+            }
+            else
+            {
+                if (MakePitcher())
+                {
+                    inventory[0].amountOwned--;
+                    inventory[3].amountOwned -= currentRecipe.icePerCup;
+                    cupsInPitcher--;
+                    money += lemonadeCupPrice;
+                    moneyEarnedToday += lemonadeCupPrice;
+                }
             }
         }
 
