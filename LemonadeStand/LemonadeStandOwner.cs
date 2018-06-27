@@ -75,7 +75,7 @@ namespace LemonadeStand
                     ManageStand();
                     break;
                 case "price":
-                    writeRecipe();
+                    SetPrice();
                     ManageStand();
                     break;
                 case "start":
