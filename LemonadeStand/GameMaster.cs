@@ -27,6 +27,26 @@ namespace LemonadeStand
             randomizer = new Random();
         }
 
+        private void ShortageAlert()
+        {
+            if (player1.inventory[0].amountOwned <= 0)
+            {
+                Console.WriteLine("You're out of cups!");
+            }
+            if (player1.inventory[1].amountOwned < player1.currentRecipe.lemonsPerPitcher)
+            {
+                Console.WriteLine("You don't have enough lemons to make another pitcher!");
+            }
+            if (player1.inventory[2].amountOwned < player1.currentRecipe.sugarPerPitcher)
+            {
+                Console.WriteLine("You don't have enough sugar to make another pitcher!");
+            }
+            if (player1.inventory[3].amountOwned < player1.currentRecipe.icePerCup)
+            {
+                Console.WriteLine("You don't have enough ice to pour another cup!");
+            }
+        }
+
         private void ChangePrice()
         {
             Console.WriteLine("Change the price of lemonade before the period begins? (Yes/No))");
@@ -152,6 +172,7 @@ namespace LemonadeStand
                             }
                         }
                     }
+                    ShortageAlert();
                     WrapUpPeriod(i);                    
                 }
                 WrapUpDay();
@@ -164,7 +185,7 @@ namespace LemonadeStand
         {
             player1.moneyEarnedTotal += player1.moneyEarnedToday;
             player1.moneySpentTotal += player1.moneySpentToday;
-            player1.popularity = player1.todayCustomerSatisfaction / 4;
+            player1.popularity += player1.todayCustomerSatisfaction;
             PrintDayResults();
             player1.SpoilItems();
             player1.moneyEarnedToday = 0;

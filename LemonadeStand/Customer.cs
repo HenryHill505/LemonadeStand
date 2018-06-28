@@ -12,16 +12,16 @@ namespace LemonadeStand
         public int actualIceDesired;
         public int actualLemonsDesired;
         public int actualSugarDesired;
-        public int baseIceDesired = 3;
-        public int baseLemonsDesired = 2;
-        public int baseSugarDesired = 2;
+        public int baseIceDesired = 2;
+        public int baseLemonsDesired = 1;
+        public int baseSugarDesired = 1;
         public int cupsDesired;
 
         public Customer(Random randomizer)
         {
-            actualIceDesired = baseIceDesired + randomizer.Next(0, 3);
-            actualLemonsDesired = baseLemonsDesired + randomizer.Next(0, 4);
-            actualSugarDesired = baseSugarDesired + randomizer.Next(0, 4);
+            actualIceDesired = baseIceDesired + randomizer.Next(0, 4);
+            actualLemonsDesired = baseLemonsDesired + randomizer.Next(0, 5);
+            actualSugarDesired = baseSugarDesired + randomizer.Next(0, 5);
             maxPrice = SetMaxPrice(randomizer);
             cupsDesired = SetCupsDesired();
         }
