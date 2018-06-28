@@ -158,6 +158,7 @@ namespace LemonadeStand
                 for (int i = 1; i <= periodsPerDay; i++)
                 {
                     StartPeriod(i);
+                    ShortageAlert();
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
@@ -172,7 +173,7 @@ namespace LemonadeStand
                             }
                         }
                     }
-                    ShortageAlert();
+                    
                     WrapUpPeriod(i);                    
                 }
                 WrapUpDay();
