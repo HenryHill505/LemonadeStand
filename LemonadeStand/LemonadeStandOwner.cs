@@ -44,7 +44,7 @@ namespace LemonadeStand
             {
                 int bundleChoice = int.Parse(userInput);
                 BuyItemBundle(chosenItem, bundleChoice);
-                BuyItem(userChoice);
+                BuyItem(userChoice-1);
             }
         }
 
@@ -67,33 +67,7 @@ namespace LemonadeStand
             return false;
         }
 
-        public void ManageStand()
-        {
-            Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
-            string userInput = Console.ReadLine().ToLower();
-
-            switch (userInput)
-            {
-                case "s":
-                    Shop();
-                    ManageStand();
-                    break;
-                case "r":
-                    writeRecipe();
-                    ManageStand();
-                    break;
-                case "p":
-                    SetPrice();
-                    ManageStand();
-                    break;
-                case "d":
-                    break;
-                default:
-                    Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
-                    ManageStand();
-                    break;
-            }
-        }
+        
 
         public void PrintInventory()
         {
@@ -109,7 +83,7 @@ namespace LemonadeStand
             Console.WriteLine($"{selectedItem.name} ({selectedItem.amountOwned} in inventory): ");
             for (int i = 0; i < selectedItem.bundleAndPrice.GetLength(0); i++)
             {
-                Console.WriteLine($"{i}.{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
+                Console.WriteLine($"{i+1}.{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
             }
         }
 

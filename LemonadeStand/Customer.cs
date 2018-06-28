@@ -23,7 +23,7 @@ namespace LemonadeStand
             actualLemonsDesired = baseLemonsDesired + randomizer.Next(0, 5);
             actualSugarDesired = baseSugarDesired + randomizer.Next(0, 5);
             maxPrice = SetMaxPrice(randomizer);
-            cupsDesired = SetCupsDesired();
+            cupsDesired = SetCupsDesired(randomizer);
         }
 
         public int GetSatisfaction(int lemon, int sugar, int ice)
@@ -31,9 +31,9 @@ namespace LemonadeStand
             return (actualLemonsDesired-lemon) + (actualSugarDesired-sugar) + (actualIceDesired-ice);
         }
 
-        public int SetCupsDesired()
+        public int SetCupsDesired(Random randomizer)
         {
-            return 1;
+            return randomizer.Next(1,4);
         }
 
         public double SetMaxPrice(Random randomizer)

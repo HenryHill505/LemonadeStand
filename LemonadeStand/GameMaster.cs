@@ -100,6 +100,36 @@ namespace LemonadeStand
             player1.name = Console.ReadLine();
         }
 
+        public bool ManageStand()
+        {
+            Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
+            string userInput = Console.ReadLine().ToLower();
+
+            switch (userInput)
+            {
+                case "s":
+                    player1.Shop();
+                    ManageStand();
+                    return false;
+                case "r":
+                    player1.writeRecipe();
+                    ManageStand();
+                    return false;
+                case "p":
+                    player1.SetPrice();
+                    ManageStand();
+                    return false;
+                case "d":
+                    return false;
+                case "b":
+                    UI.ClearPrint($"You declare bankruptcy! {player1.name}'s lemonade stand is finished!");
+                    return true;
+                default:
+                    Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
+                    return ManageStand();
+            }
+        }
+
         private void PrintDayResults()
         {
             Console.WriteLine($"Day {dayCounter} results");
@@ -150,34 +180,40 @@ namespace LemonadeStand
             {
                 today = new Day();
                 UI.ClearPrint($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
-                player1.ManageStand();
-                todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
-                Console.WriteLine($"Begin Day {dayCounter}");
-                Console.ReadLine();
-                //period loop
-                for (int i = 1; i <= periodsPerDay; i++)
+                bool isBankrupt = ManageStand();
+                if (isBankrupt)
                 {
-                    StartPeriod(i);
-                    ShortageAlert();
-                    //customer loop
-                    for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
+                    dayCounter = dayLimit + 1;
+                }
+                else
+                {
+                    todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
+                    Console.WriteLine($"Begin Day {dayCounter}");
+                    Console.ReadLine();
+                    //period loop
+                    for (int i = 1; i <= periodsPerDay; i++)
                     {
-                        customer = new Customer(randomizer);
-
-                        if (player1.lemonadeCupPrice <= SetCustomerPrice())
+                        StartPeriod(i);
+                        ShortageAlert();
+                        //customer loop
+                        for (int j = 0; j < todayCustomerTraffic / periodsPerDay; j++)
                         {
-                            for (int k = 0; k < customer.cupsDesired; k++)
+                            customer = new Customer(randomizer);
+
+                            if (player1.lemonadeCupPrice <= SetCustomerPrice())
                             {
-                                player1.ServeCustomer();
-                                player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
+                                for (int k = 0; k < customer.cupsDesired; k++)
+                                {
+                                    player1.ServeCustomer();
+                                    player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
+                                }
                             }
                         }
+                        WrapUpPeriod(i);
                     }
-                    
-                    WrapUpPeriod(i);                    
+                    WrapUpDay();
+                    Console.ReadLine();
                 }
-                WrapUpDay();
-                Console.ReadLine();
             }
             PrintGameResults();
         }
