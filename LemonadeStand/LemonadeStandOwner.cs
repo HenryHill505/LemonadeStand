@@ -124,6 +124,7 @@ namespace LemonadeStand
                 moneyEarnedToday += lemonadeCupPrice;
                 cupsSoldThisPeriod++;
                 customersServedThisPeriod++;
+                cupsSoldToday++;
                 customersServedToday++;
             }
         }
