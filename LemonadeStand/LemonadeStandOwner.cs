@@ -42,9 +42,9 @@ namespace LemonadeStand
             string userInput = Console.ReadLine().ToLower();
             if (userInput != "done")
             {
-                int bundleChoice = int.Parse(userInput);
+                int bundleChoice = int.Parse(userInput)-1;
                 BuyItemBundle(chosenItem, bundleChoice);
-                BuyItem(userChoice-1);
+                BuyItem(userChoice);
             }
         }
 
