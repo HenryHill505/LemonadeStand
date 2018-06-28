@@ -149,7 +149,7 @@ namespace LemonadeStand
             while (dayCounter <= dayLimit)
             {
                 today = new Day();
-                Console.WriteLine($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
+                UI.ClearPrint($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
                 player1.ManageStand();
                 todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
                 Console.WriteLine($"Begin Day {dayCounter}");

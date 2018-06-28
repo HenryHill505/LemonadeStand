@@ -8,12 +8,11 @@ namespace LemonadeStand
 {
     public static class UI
     {
-        public static void PrintClear(string input)
+        public static void ClearPrint(string input)
         {
-            Console.WriteLine(input);
-            Console.ReadKey();
             Console.Clear();
-
+            Console.WriteLine(input);
+            Console.ReadLine();
         }
     }
 }

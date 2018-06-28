@@ -59,6 +59,7 @@
     <Compile Include="Rain.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="Sugar.cs" />
+    <Compile Include="UI.cs" />
     <Compile Include="Weather.cs" />
   </ItemGroup>
   <ItemGroup>
