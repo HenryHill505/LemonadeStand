@@ -35,8 +35,7 @@ namespace LemonadeStand
                 case "yes":
                     try
                     {
-                        Console.WriteLine("Enter new price");
-                        player1.lemonadeCupPrice = double.Parse(Console.ReadLine());
+                        player1.SetPrice();
                     }
                     catch (FormatException)
                     {

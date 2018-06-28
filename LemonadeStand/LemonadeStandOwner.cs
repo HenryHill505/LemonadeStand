@@ -143,7 +143,7 @@ namespace LemonadeStand
 
         public void SetPrice()
         {
-            Console.WriteLine("Enter new price per cup: ");
+            Console.WriteLine($"Current Price: {lemonadeCupPrice}\nEnter new price per cup: ");
             lemonadeCupPrice = double.Parse(Console.ReadLine());
             Console.WriteLine($"Price set to {lemonadeCupPrice}");
             Console.ReadLine();
