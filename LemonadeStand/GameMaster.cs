@@ -105,6 +105,13 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
+        public void StartPeriod()
+        {
+            Console.WriteLine($"Begin Period {i}");
+            Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
+            ChangePrice();
+        }
+
         public void RunGame()
         {
             DisplayRules();
@@ -121,9 +128,7 @@ namespace LemonadeStand
                 //period loop
                 for (int i = 1; i <= periodsPerDay; i++)
                 {
-                    Console.WriteLine($"Begin Period {i}");
-                    Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
-                    ChangePrice();
+                    StartPeriod();
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
