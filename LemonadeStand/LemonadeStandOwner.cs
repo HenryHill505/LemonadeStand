@@ -50,9 +50,16 @@ namespace LemonadeStand
 
         public void BuyItemBundle(Item selectedItem, int bundleChoice)
         {
-            selectedItem.amountOwned += selectedItem.bundleAndPrice[bundleChoice, 0];
-            money -= selectedItem.bundleAndPrice[bundleChoice, 1];
-            moneySpentToday += selectedItem.bundleAndPrice[bundleChoice, 1];
+            if (money > selectedItem.bundleAndPrice[bundleChoice, 1])
+            {
+                selectedItem.amountOwned += selectedItem.bundleAndPrice[bundleChoice, 0];
+                money -= selectedItem.bundleAndPrice[bundleChoice, 1];
+                moneySpentToday += selectedItem.bundleAndPrice[bundleChoice, 1];
+            }
+            else
+            {
+                Console.WriteLine("You don't have enough money to buy that!");
+            }
         }
 
         public bool MakePitcher()
@@ -80,6 +87,7 @@ namespace LemonadeStand
 
         public void PrintItemBundles(Item selectedItem)
         {
+            Console.WriteLine($"${money} Remaining");
             Console.WriteLine($"{selectedItem.name} ({selectedItem.amountOwned} in inventory): ");
             for (int i = 0; i < selectedItem.bundleAndPrice.GetLength(0); i++)
             {
@@ -97,7 +105,7 @@ namespace LemonadeStand
                 money += lemonadeCupPrice;
                 moneyEarnedToday += lemonadeCupPrice;
                 cupsSoldThisPeriod++;
-                customersServedThisPeriod++;
+                
                 cupsSoldToday++;
                 customersServedToday++;
             }
@@ -105,6 +113,10 @@ namespace LemonadeStand
 
         public void ServeCustomer()
         {
+            if (cupsInPitcher > 0)
+            {
+                customersServedThisPeriod++;
+            }
             if (cupsInPitcher> 0)
             {
                 SellCup();
@@ -136,7 +148,7 @@ namespace LemonadeStand
 
         public void Shop()
         {
-            UI.ClearPrint($"Select an item by it's number, or type 'done'\n${money}");
+            UI.ClearPrint($"Select an item by it's number, or type 'done'\n${money} Remaining");
             PrintInventory();
             Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
