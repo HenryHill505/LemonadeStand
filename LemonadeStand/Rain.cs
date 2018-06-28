@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         public Rain()
         {
-            name = "Rain";
+            name = "Raining";
             priceModifier = 0;
             customerTrafficModifier = 0;
         }

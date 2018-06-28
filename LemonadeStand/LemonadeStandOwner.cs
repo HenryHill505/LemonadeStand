@@ -168,6 +168,7 @@ namespace LemonadeStand
                 catch
                 {
                     Console.WriteLine("Error. Make sure you select the number of your choice.");
+                    Shop();
                 }
             }
         }

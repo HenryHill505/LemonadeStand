@@ -98,8 +98,9 @@ namespace LemonadeStand
 
         private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
         {
+            Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
             Console.WriteLine($"{TotalCustomers} people pass {player1.name}'s Lemonade Stand.");
-            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bring your funds to {player1.money}\n");
+            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bringing your funds to {player1.money}\n");
             player1.PrintInventory();
             Console.ReadLine();
         }
@@ -125,6 +126,7 @@ namespace LemonadeStand
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
                         customer = new Customer(randomizer);
+
                         if (player1.lemonadeCupPrice <= customer.maxPrice+today.actualWeather.priceModifier+(today.actualTemperature-50)/200)
                         {
                             for (int k = 0; k < customer.cupsDesired; k++)
