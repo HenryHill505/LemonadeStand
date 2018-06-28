@@ -98,7 +98,7 @@ namespace LemonadeStand
 
         private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
         {
-            Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
+            
             Console.WriteLine($"{TotalCustomers} people pass {player1.name}'s Lemonade Stand.");
             Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bringing your funds to {player1.money}\n");
             player1.PrintInventory();
@@ -122,6 +122,8 @@ namespace LemonadeStand
                 for (int i = 1; i <= periodsPerDay; i++)
                 {
                     Console.WriteLine($"Begin Period {i}");
+                    Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
+                    ChangePrice();
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
@@ -161,7 +163,7 @@ namespace LemonadeStand
         public void WrapUpPeriod(int periodNumber)
         {
             PrintPeriodResults(periodNumber, player1.customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, player1.cupsSoldThisPeriod);
-            ChangePrice();
+            
             player1.customersServedThisPeriod = 0;
             player1.cupsSoldThisPeriod = 0;
         }
