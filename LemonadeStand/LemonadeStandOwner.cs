@@ -159,9 +159,16 @@ namespace LemonadeStand
             string userInput = Console.ReadLine().ToLower();
             if (userInput != "done")
             {
-                int userChoice = int.Parse(userInput);
-                BuyItem(userChoice);
-                Shop();
+                try
+                {
+                    int userChoice = int.Parse(userInput);
+                    BuyItem(userChoice);
+                    Shop();
+                }
+                catch
+                {
+                    Console.WriteLine("Error. Make sure you select the number of your choice.");
+                }
             }
         }
 
