@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     public class GameMaster
     {
+        Customer customer;
         Day today;
         int baseDailyCustomerTraffic;
         int dayCounter;
@@ -123,7 +124,7 @@ namespace LemonadeStand
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
-                        Customer customer = new Customer(randomizer);
+                        customer = new Customer(randomizer);
                         if (player1.lemonadeCupPrice <= customer.maxPrice+today.actualWeather.priceModifier+(today.actualTemperature-50)/4)
                         {
                             for (int k = 0; k < customer.cupsDesired; k++)
