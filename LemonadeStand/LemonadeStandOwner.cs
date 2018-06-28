@@ -19,6 +19,8 @@ namespace LemonadeStand
         public int cupsSoldToday;
         public int customersServedThisPeriod;
         public int customersServedToday;
+        public int popularity;
+        public int todayCustomerSatisfaction;
         public List<Item> inventory;
         public string name;
         public Recipe oldRecipe;

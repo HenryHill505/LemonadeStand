@@ -85,6 +85,7 @@ namespace LemonadeStand
             Console.WriteLine($"You sold {player1.cupsSoldToday} cups  to {player1.customersServedToday}.\n");
             Console.WriteLine($"Today's revenue: {player1.moneyEarnedToday}\nToday's costs: {player1.moneySpentToday}\nToday's net profit: {player1.moneyEarnedToday - player1.moneySpentToday}");
             Console.WriteLine($"Total revenue: {player1.moneyEarnedTotal}\nTotal costs: {player1.moneySpentTotal}\nTotal net profit: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
+            Console.WriteLine($"Today's Customer Satisfaction: {player1.todayCustomerSatisfaction}\nPopularity: {player1.popularity}");
         }
 
         private void PrintGameResults()
@@ -128,6 +129,7 @@ namespace LemonadeStand
                             for (int k = 0; k < customer.cupsDesired; k++)
                             {
                                 player1.ServeCustomer();
+                                player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
                             }
                         }
                     }
@@ -143,12 +145,14 @@ namespace LemonadeStand
         {
             player1.moneyEarnedTotal += player1.moneyEarnedToday;
             player1.moneySpentTotal += player1.moneySpentToday;
+            player1.popularity = player1.todayCustomerSatisfaction / 4;
             PrintDayResults();
             player1.SpoilItems();
             player1.moneyEarnedToday = 0;
             player1.moneySpentToday = 0;
             player1.cupsSoldToday = 0;
             player1.customersServedToday = 0;
+            player1.todayCustomerSatisfaction = 0;
             dayCounter++;
         }
         public void WrapUpPeriod(int periodNumber)
