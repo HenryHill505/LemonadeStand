@@ -19,7 +19,7 @@ namespace LemonadeStand
 
         public Customer(Random randomizer)
         {
-            actualIceDesired = baseIceDesired + randomizer.Next(0, 4);
+            actualIceDesired = baseIceDesired + randomizer.Next(0, 3);
             actualLemonsDesired = baseLemonsDesired + randomizer.Next(0, 4);
             actualSugarDesired = baseSugarDesired + randomizer.Next(0, 4);
             maxPrice = SetMaxPrice(randomizer);
