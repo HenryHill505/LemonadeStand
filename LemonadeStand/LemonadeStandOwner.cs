@@ -52,7 +52,7 @@ namespace LemonadeStand
         {
             selectedItem.amountOwned += selectedItem.bundleAndPrice[bundleChoice, 0];
             money -= selectedItem.bundleAndPrice[bundleChoice, 1];
-            moneySpentToday -= selectedItem.bundleAndPrice[bundleChoice, 1];
+            moneySpentToday += selectedItem.bundleAndPrice[bundleChoice, 1];
         }
 
         public bool MakePitcher()
@@ -120,15 +120,23 @@ namespace LemonadeStand
 
         public void SetPrice()
         {
-            Console.WriteLine($"Current Price: {lemonadeCupPrice}\nEnter new price per cup: ");
-            lemonadeCupPrice = double.Parse(Console.ReadLine());
-            Console.WriteLine($"Price set to {lemonadeCupPrice}");
-            Console.ReadLine();
+            try
+            {
+                Console.WriteLine($"Current Price: {lemonadeCupPrice}\nEnter new price per cup: ");
+                lemonadeCupPrice = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Price set to {lemonadeCupPrice}");
+                Console.ReadLine();
+            }
+            catch
+            {
+                Console.WriteLine("Error. Price must be an integer");
+                SetPrice();
+            }
         }
 
         public void Shop()
         {
-            UI.ClearPrint("Select an item by it's number, or type 'done'");
+            UI.ClearPrint($"Select an item by it's number, or type 'done'\n${money}");
             PrintInventory();
             Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
