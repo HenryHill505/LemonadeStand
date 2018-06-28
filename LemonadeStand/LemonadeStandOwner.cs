@@ -98,13 +98,13 @@ namespace LemonadeStand
             for (int i = 0; i<inventory.Count; i++)
             {
                 Item item = inventory[i];
-                Console.WriteLine($"{i}.{item.name}: {item.amountOwned} {item.unit}");
+                Console.WriteLine($"{i}.{item.name}: {item.amountOwned} {item.unit} owned");
             }
         }
 
         public void PrintItemBundles(Item selectedItem)
         {
-            Console.WriteLine($"{selectedItem.name}: ");
+            Console.WriteLine($"{selectedItem.name} ({selectedItem.amountOwned} in inventory): ");
             for (int i = 0; i < selectedItem.bundleAndPrice.GetLength(0); i++)
             {
                 Console.WriteLine($"{i}.{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
