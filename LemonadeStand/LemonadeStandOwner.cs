@@ -69,27 +69,27 @@ namespace LemonadeStand
 
         public void ManageStand()
         {
-            Console.WriteLine("What would you like to manage?\nShop\nRecipe\nPrice\nStart");
+            Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
             string userInput = Console.ReadLine().ToLower();
 
             switch (userInput)
             {
-                case "shop":
+                case "s":
                     Shop();
                     ManageStand();
                     break;
-                case "recipe":
+                case "r":
                     writeRecipe();
                     ManageStand();
                     break;
-                case "price":
+                case "p":
                     SetPrice();
                     ManageStand();
                     break;
-                case "start":
+                case "d":
                     break;
                 default:
-                    Console.WriteLine("Not a valid command. Please pick Shop, Recipe, Price, or Start");
+                    Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
                     ManageStand();
                     break;
             }
