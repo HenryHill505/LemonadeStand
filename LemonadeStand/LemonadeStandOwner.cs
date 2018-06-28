@@ -100,7 +100,7 @@ namespace LemonadeStand
             for (int i = 0; i<inventory.Count; i++)
             {
                 Item item = inventory[i];
-                Console.WriteLine($"{i}.{item.name}: {item.amountOwned} {item.unit} owned");
+                Console.WriteLine($"{i+1}.{item.name}: {item.amountOwned} {item.unit} owned");
             }
         }
 
@@ -154,6 +154,7 @@ namespace LemonadeStand
 
         public void Shop()
         {
+            UI.ClearPrint("Select an item by it's number, or type 'done'");
             PrintInventory();
             Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
@@ -161,7 +162,7 @@ namespace LemonadeStand
             {
                 try
                 {
-                    int userChoice = int.Parse(userInput);
+                    int userChoice = int.Parse(userInput)-1;
                     BuyItem(userChoice);
                     Shop();
                 }
