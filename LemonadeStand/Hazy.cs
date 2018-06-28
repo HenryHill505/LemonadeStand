@@ -11,7 +11,7 @@ namespace LemonadeStand
         public Hazy()
         {
             name = "Hazy";
-            priceModifier = 4;
+            priceModifier = .06;
             customerTrafficModifier = 15;
         }
     }

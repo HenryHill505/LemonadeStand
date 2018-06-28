@@ -11,7 +11,7 @@ namespace LemonadeStand
         public Overcast()
         {
             name = "Overcast";
-            priceModifier = 2;
+            priceModifier = .02;
             customerTrafficModifier = 5;
         }
     }

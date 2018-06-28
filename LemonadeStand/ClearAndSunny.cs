@@ -11,7 +11,7 @@ namespace LemonadeStand
         public ClearAndSunny()
         {
             name = "Clear and Sunny";
-            priceModifier = 5;
+            priceModifier = .08;
             customerTrafficModifier = 20;
         }
     }

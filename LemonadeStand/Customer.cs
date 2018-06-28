@@ -38,7 +38,7 @@ namespace LemonadeStand
 
         public double SetMaxPrice(Random randomizer)
         {
-            double basePrice = randomizer.Next(0, 6) * .1 + randomizer.Next(0, 10) * .01;
+            double basePrice = randomizer.Next(0, 2) * .1 + randomizer.Next(0, 10) * .01;
             return basePrice;
         }
     }

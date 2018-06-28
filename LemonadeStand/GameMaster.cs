@@ -125,7 +125,7 @@ namespace LemonadeStand
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
                         customer = new Customer(randomizer);
-                        if (player1.lemonadeCupPrice <= customer.maxPrice+today.actualWeather.priceModifier+(today.actualTemperature-50)/4)
+                        if (player1.lemonadeCupPrice <= customer.maxPrice+today.actualWeather.priceModifier+(today.actualTemperature-50)/200)
                         {
                             for (int k = 0; k < customer.cupsDesired; k++)
                             {

@@ -10,6 +10,6 @@ namespace LemonadeStand
     {
         public int customerTrafficModifier;
         public string name;
-        public int priceModifier;
+        public double priceModifier;
     }
 }
