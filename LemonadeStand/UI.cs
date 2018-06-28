@@ -12,7 +12,6 @@ namespace LemonadeStand
         {
             Console.Clear();
             Console.WriteLine(input);
-            
         }
     }
 }

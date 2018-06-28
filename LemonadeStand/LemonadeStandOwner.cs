@@ -74,7 +74,7 @@ namespace LemonadeStand
             for (int i = 0; i<inventory.Count; i++)
             {
                 Item item = inventory[i];
-                Console.WriteLine($"{i+1}.{item.name}: {item.amountOwned} {item.unit} owned");
+                Console.WriteLine($"{i+1}: {item.name}: {item.amountOwned} {item.unit} owned");
             }
         }
 
@@ -158,8 +158,8 @@ namespace LemonadeStand
 
         public void writeRecipe()
         {
-            currentRecipe.Print();
-            Console.WriteLine("Done");
+            Console.WriteLine("Select which part of the recipe to edit, or type 'done'");
+            currentRecipe.Print();            
             string userInput = Console.ReadLine().ToLower();
             if (userInput != "done")
             {

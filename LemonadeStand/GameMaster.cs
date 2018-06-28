@@ -102,6 +102,7 @@ namespace LemonadeStand
 
         public bool ManageStand()
         {
+            UI.ClearPrint($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
             Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
             string userInput = Console.ReadLine().ToLower();
 
@@ -179,7 +180,6 @@ namespace LemonadeStand
             while (dayCounter <= dayLimit)
             {
                 today = new Day();
-                UI.ClearPrint($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
                 bool isBankrupt = ManageStand();
                 if (isBankrupt)
                 {

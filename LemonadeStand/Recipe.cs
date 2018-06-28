@@ -21,9 +21,9 @@ namespace LemonadeStand
 
         public void Print()
         {
-            Console.WriteLine($"1.{lemonsPerPitcher} lemons per pitcher");
-            Console.WriteLine($"2.{sugarPerPitcher} cups of sugar per pitcher");
-            Console.WriteLine($"3.{icePerCup} ice cubes per cup");
+            Console.WriteLine($"1: {lemonsPerPitcher} lemons per pitcher");
+            Console.WriteLine($"2: {sugarPerPitcher} cups of sugar per pitcher");
+            Console.WriteLine($"3: {icePerCup} ice cubes per cup");
         }
 
         public void Rewrite(string choice)
