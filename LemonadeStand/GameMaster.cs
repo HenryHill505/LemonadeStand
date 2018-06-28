@@ -29,7 +29,7 @@ namespace LemonadeStand
 
         private void ChangePrice()
         {
-            Console.WriteLine("Change the price of lemonade before the next period begins? (Yes/No))");
+            Console.WriteLine("Change the price of lemonade before the period begins? (Yes/No))");
             string userInput = Console.ReadLine().ToLower();
             switch (userInput)
             {
@@ -105,9 +105,18 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
-        public void StartPeriod()
+        private double SetCustomerPrice()
         {
-            Console.WriteLine($"Begin Period {i}");
+            double finalMaxPrice = customer.maxPrice + today.actualWeather.priceModifier;
+            double temperatureImpact = ((Convert.ToDouble(today.actualTemperature) - 50) / 200);
+            finalMaxPrice += temperatureImpact;
+            return finalMaxPrice;
+
+        }
+
+        public void StartPeriod(int periodNumber)
+        {
+            Console.WriteLine($"Begin Period {periodNumber}");
             Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
             ChangePrice();
         }
@@ -128,13 +137,13 @@ namespace LemonadeStand
                 //period loop
                 for (int i = 1; i <= periodsPerDay; i++)
                 {
-                    StartPeriod();
+                    StartPeriod(i);
                     //customer loop
                     for (int j = 0; j < todayCustomerTraffic/periodsPerDay; j++)
                     {
                         customer = new Customer(randomizer);
 
-                        if (player1.lemonadeCupPrice <= customer.maxPrice+today.actualWeather.priceModifier+(today.actualTemperature-50)/200)
+                        if (player1.lemonadeCupPrice <= SetCustomerPrice())
                         {
                             for (int k = 0; k < customer.cupsDesired; k++)
                             {
