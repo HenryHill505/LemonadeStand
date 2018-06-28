@@ -83,7 +83,7 @@ namespace LemonadeStand
             Console.WriteLine($"{selectedItem.name} ({selectedItem.amountOwned} in inventory): ");
             for (int i = 0; i < selectedItem.bundleAndPrice.GetLength(0); i++)
             {
-                Console.WriteLine($"{i+1}.{selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
+                Console.WriteLine($"{i+1}: {selectedItem.bundleAndPrice[i,0]} {selectedItem.unit} for {selectedItem.bundleAndPrice[i,1]}");
             }
         }
 
