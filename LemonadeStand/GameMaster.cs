@@ -202,11 +202,8 @@ namespace LemonadeStand
 
                             if (player1.lemonadeCupPrice <= SetCustomerPrice())
                             {
-                                for (int k = 0; k < customer.cupsDesired; k++)
-                                {
-                                    player1.ServeCustomer();
+                                    player1.ServeCustomer(customer.cupsDesired);
                                     player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
-                                }
                             }
                         }
                         WrapUpPeriod(i);
