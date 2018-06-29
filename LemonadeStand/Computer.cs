@@ -24,8 +24,13 @@ namespace LemonadeStand
         public override void ManageStand(string weatherForecast)
         {
             Shop();
+
         }
 
+        public override void SetPrice()
+        {
+            lemonadeCupPrice = 5 + randomizer.Next(0, 26);
+        }
         public void Shop()
         {
             foreach (Item item in inventory)
