@@ -37,8 +37,8 @@ namespace LemonadeStand
             {
                 if (item.amountOwned < item.bundleAndPrice[0, 0])
                 {
-                    int buyIndex = randomizer.Next(0, 4);
-                    if (buyIndex <= 0 && money > item.bundleAndPrice[buyIndex, 1])
+                    int buyIndex = randomizer.Next(1, 3);
+                    if (money > item.bundleAndPrice[buyIndex, 1])
                     BuyItemBundle(item, buyIndex);
                 }
             }
