@@ -56,7 +56,7 @@ namespace LemonadeStand
 
         private void GetPlayerCount()
         {
-            Console.WriteLine("Is this a 1 or 2 player game");
+            Console.WriteLine("Is this a 1, 2 player game, or a computer");
             string userInput = Console.ReadLine();
             switch (userInput)
             {
@@ -66,8 +66,11 @@ namespace LemonadeStand
                 case "2":
                     players = new List<LemonadeStandOwner> { new LemonadeStandOwner(), new LemonadeStandOwner() };
                     break;
+                case "computer":
+                    players = new List<LemonadeStandOwner> { new LemonadeStandOwner(), new Computer(randomizer) };
+                    break;
                 default:
-                    Console.WriteLine("Error. Enter either 1 or 2 for the player count");
+                    Console.WriteLine("Error. Enter either 1, 2, or computer");
                     GetPlayerCount();
                     break;
             }
