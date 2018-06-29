@@ -113,21 +113,27 @@ namespace LemonadeStand
 
         public void ServeCustomer(int cupsToSell)
         {
-            if (cupsInPitcher> 0)
+            if (cupsInPitcher > 0)
             {
                 customersServedThisPeriod++;
-                for (int i = 0; i < cupsToSell; i++) {
+            }
+
+            for (int i = 0; i < cupsToSell; i++)
+            {
+                if (cupsInPitcher > 0)
+                {
                     SellCup();
                 }
-            }
-            else
-            {
-                if (MakePitcher())
+
+                else
                 {
-                    customersServedThisPeriod++;
-                    for (int i = 0; i < cupsToSell; i++)
+                    if (MakePitcher())
                     {
-                        SellCup();
+                        customersServedThisPeriod++;
+                        for (int k = 0; k < cupsToSell; k++)
+                        {
+                            SellCup();
+                        }
                     }
                 }
             }
