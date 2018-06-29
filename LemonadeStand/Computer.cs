@@ -28,5 +28,10 @@ namespace LemonadeStand
                 }
             }
         }
+
+        public override void ChangePrice()
+        {
+            
+        }
     }
 }

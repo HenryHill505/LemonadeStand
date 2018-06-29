@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ClearAndSunny.cs" />
     <Compile Include="Cloudy.cs" />
+    <Compile Include="Computer.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="GameMaster.cs" />

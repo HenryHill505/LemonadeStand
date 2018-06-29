@@ -84,7 +84,7 @@ namespace LemonadeStand
             return false;
         }
 
-        public void ChangePrice()
+        public virtual void ChangePrice()
         {
             Console.WriteLine("Change the price of lemonade before the period begins? (Yes/No))");
             string userInput = Console.ReadLine().ToLower();
@@ -123,7 +123,40 @@ namespace LemonadeStand
             return false;
         }
 
-        
+        public void ManageStand(string weatherForecast)
+        {
+            UI.ClearPrint(weatherForecast);
+            Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
+            string userInput = Console.ReadLine().ToLower();
+
+            switch (userInput)
+            {
+                case "s":
+                    Shop(weatherForecast);
+                    ManageStand(weatherForecast);
+                    break;
+                case "r":
+                    writeRecipe();
+                    ManageStand(weatherForecast);
+                    break;
+                case "p":
+                    SetPrice();
+                    ManageStand(weatherForecast);
+                    break;
+                case "d":
+                    break;
+                case "b":
+                    UI.ClearPrint($"You declare bankruptcy! {name}'s lemonade stand is finished!");
+                    isBankrupt = true;
+                    Console.ReadLine();
+                    break;
+                default:
+                    Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
+                    Console.ReadLine();
+                    ManageStand(weatherForecast);
+                    break;
+            }
+        }
 
         public void PrintInventory()
         {

@@ -95,38 +95,7 @@ namespace LemonadeStand
             }
         }
 
-        public bool ManageStand(LemonadeStandOwner player)
-        {
 
-            string weatherForecast = $"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n";
-            UI.ClearPrint(weatherForecast);
-            Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
-            string userInput = Console.ReadLine().ToLower();
-
-            switch (userInput)
-            {
-                case "s":
-                    player.Shop(weatherForecast);
-                    return ManageStand(player);
-                case "r":
-                    player.writeRecipe();
-                    return ManageStand(player);
-                case "p":
-                    player.SetPrice();
-                    return ManageStand(player);
-                case "d":
-                    return false;
-                case "b":
-                    UI.ClearPrint($"You declare bankruptcy! {player.name}'s lemonade stand is finished!");
-                    player.isBankrupt = true;
-                    Console.ReadLine();
-                    return true;
-                default:
-                    Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
-                    Console.ReadLine();
-                    return ManageStand(player);
-            }
-        }
 
         private void PrintDayResults(LemonadeStandOwner player)
         {
@@ -210,12 +179,13 @@ namespace LemonadeStand
         public void RunDay()
         {
             today = new Day();
+            string weatherForecast = $"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n";
             foreach (LemonadeStandOwner player in players)
             {
                 if (!player.isBankrupt)
                 {
                     if (players.Count > 1) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
-                    ManageStand(player);
+                    player.ManageStand(weatherForecast);
                 }
             }
  
