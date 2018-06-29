@@ -178,24 +178,28 @@ namespace LemonadeStand
             GetDayLimit();
             while (dayCounter <= dayLimit)
             {
-                today = new Day();
-                bool isBankrupt = ManageStand();
-                if (isBankrupt)
-                {
-                    dayCounter = dayLimit + 1;
-                }
-                else
-                {
-                    todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
-                    Console.WriteLine($"Begin Day {dayCounter}");
-                    Console.ReadLine();
-                    RunPeriod();
-
-                    WrapUpDay();
-                    Console.ReadLine();
-                }
+                RunDay();
             }
             PrintGameResults();
+        }
+
+        public void RunDay()
+        {
+            today = new Day();
+            bool isBankrupt = ManageStand();
+            if (isBankrupt)
+            {
+                dayCounter = dayLimit + 1;
+            }
+            else
+            {
+                todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
+                Console.WriteLine($"Begin Day {dayCounter}");
+                Console.ReadLine();
+                RunPeriod();
+                WrapUpDay();
+                Console.ReadLine();
+            }
         }
 
         public void RunPeriod()
