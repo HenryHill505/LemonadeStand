@@ -93,6 +93,7 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Error. Enter either 1 or 2 for the player count");
+                    GetPlayerCount();
                     break;
             }
         }
@@ -142,6 +143,8 @@ namespace LemonadeStand
                     return false;
                 case "b":
                     UI.ClearPrint($"You declare bankruptcy! {player.name}'s lemonade stand is finished!");
+                    player.isBankrupt = true;
+                    Console.ReadLine();
                     return true;
                 default:
                     Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
@@ -165,7 +168,7 @@ namespace LemonadeStand
         {
             foreach (LemonadeStandOwner player in players)
             {
-                Console.WriteLine("End of Season Report");
+                Console.WriteLine($"{player.name}'s End of Season Report");
                 Console.WriteLine($"Total Revenue: {player.moneyEarnedTotal}\nTotal Costs: {player.moneySpentTotal}\nNet Profit/Loss: {player.moneyEarnedTotal - player.moneySpentTotal}");
                 Console.ReadLine();
             }
@@ -257,7 +260,7 @@ namespace LemonadeStand
 
         public void RunPeriods(LemonadeStandOwner player)
         {
-            if (players.Count > 1) { Console.WriteLine($"{player.name}'s turn."); Console.ReadLine(); }
+            if (players.Count > 1) { UI.ClearPrint($"{player.name}'s turn."); Console.ReadLine(); }
             for (int i = 1; i <= periodsPerDay; i++)
             {
                 StartPeriod(i, player);

@@ -16,7 +16,7 @@ namespace LemonadeStand
         //Constructor is here to streamline testing. Delete upon project completion
         public Item()
         {
-            amountOwned = 50;
+            amountOwned = 0;
         }
 
         public virtual void Spoil() { }
