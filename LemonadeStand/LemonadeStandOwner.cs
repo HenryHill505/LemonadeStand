@@ -38,7 +38,6 @@ namespace LemonadeStand
         {
             Item chosenItem = inventory[userChoice];
             PrintItemBundles(chosenItem);
-            Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
             if (userInput != "done")
             {
@@ -105,7 +104,6 @@ namespace LemonadeStand
                 money += lemonadeCupPrice;
                 moneyEarnedToday += lemonadeCupPrice;
                 cupsSoldThisPeriod++;
-                
                 cupsSoldToday++;
                 customersServedToday++;
             }
@@ -159,7 +157,6 @@ namespace LemonadeStand
         {
             UI.ClearPrint($"Select an item by it's number, or type 'done'\n${money} Remaining");
             PrintInventory();
-            Console.WriteLine("Done");
             string userInput = Console.ReadLine().ToLower();
             if (userInput != "done")
             {

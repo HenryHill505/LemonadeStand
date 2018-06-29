@@ -127,6 +127,7 @@ namespace LemonadeStand
                     return true;
                 default:
                     Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
+                    Console.ReadLine();
                     return ManageStand();
             }
         }
