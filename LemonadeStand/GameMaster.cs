@@ -121,6 +121,7 @@ namespace LemonadeStand
 
         public bool ManageStand(LemonadeStandOwner player)
         {
+
             string weatherForecast = $"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n";
             UI.ClearPrint(weatherForecast);
             Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
@@ -151,7 +152,9 @@ namespace LemonadeStand
 
         private void PrintDayResults(LemonadeStandOwner player)
         {
-            UI.ClearPrint($"Day {dayCounter} results");
+
+            
+            if (players.Count > 1) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
             Console.WriteLine($"You sold {player.cupsSoldToday} cups to {player.customersServedToday} customers.\n");
             Console.WriteLine($"Today's revenue: ${player.moneyEarnedToday}\nToday's costs: ${player.moneySpentToday}\nToday's net profit: ${player.moneyEarnedToday - player.moneySpentToday}");
             Console.WriteLine($"Total revenue: ${player.moneyEarnedTotal}\nTotal costs: ${player.moneySpentTotal}\nTotal net profit: ${player.moneyEarnedTotal - player.moneySpentTotal}");
@@ -191,6 +194,7 @@ namespace LemonadeStand
                     }
                 }
                 Console.WriteLine($"{winner} won with ${topScore}!");
+                Console.ReadLine();
             }
         }
 
@@ -214,6 +218,7 @@ namespace LemonadeStand
         {
             DisplayRules();
             GetDayLimit();
+            GetPlayerCount();
             GetPlayerName();
             
             while (dayCounter <= dayLimit)
@@ -229,7 +234,11 @@ namespace LemonadeStand
             today = new Day();
             foreach (LemonadeStandOwner player in players)
             {
-                if (!player.isBankrupt) { ManageStand(player); }
+                if (!player.isBankrupt)
+                {
+                    if (players.Count > 1) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
+                    ManageStand(player);
+                }
             }
  
             todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
@@ -248,8 +257,7 @@ namespace LemonadeStand
 
         public void RunPeriods(LemonadeStandOwner player)
         {
-            Console.WriteLine($"{player.name}'s turn.");
-            Console.ReadLine();
+            if (players.Count > 1) { Console.WriteLine($"{player.name}'s turn."); Console.ReadLine(); }
             for (int i = 1; i <= periodsPerDay; i++)
             {
                 StartPeriod(i, player);
@@ -274,6 +282,7 @@ namespace LemonadeStand
             player.moneyEarnedTotal += player.moneyEarnedToday;
             player.moneySpentTotal += player.moneySpentToday;
             player.popularity += player.todayCustomerSatisfaction;
+            UI.ClearPrint($"Day {dayCounter} results");
             PrintDayResults(player);
             player.SpoilItems();
             player.moneyEarnedToday = 0;
