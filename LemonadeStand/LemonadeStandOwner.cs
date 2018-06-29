@@ -167,9 +167,10 @@ namespace LemonadeStand
             }
         }
 
-        public void Shop()
+        public void Shop(string weatherForecast)
         {
-            UI.ClearPrint($"Select an item by it's number, or type 'done'\n${money} Remaining");
+            UI.ClearPrint(weatherForecast);
+            Console.WriteLine($"Select an item by it's number, or type 'done'\n${money} Remaining");
             PrintInventory();
             string userInput = Console.ReadLine().ToLower();
             if (userInput != "done")
@@ -178,12 +179,12 @@ namespace LemonadeStand
                 {
                     int userChoice = int.Parse(userInput)-1;
                     BuyItem(userChoice);
-                    Shop();
+                    Shop(weatherForecast);
                 }
                 catch
                 {
                     Console.WriteLine("Error. Make sure you select the number of your choice.");
-                    Shop();
+                    Shop(weatherForecast);
                 }
             }
         }

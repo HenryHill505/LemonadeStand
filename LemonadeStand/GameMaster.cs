@@ -102,14 +102,15 @@ namespace LemonadeStand
 
         public bool ManageStand()
         {
-            UI.ClearPrint($"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n");
+            string weatherForecast = $"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n";
+            UI.ClearPrint(weatherForecast);
             Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
             string userInput = Console.ReadLine().ToLower();
 
             switch (userInput)
             {
                 case "s":
-                    player1.Shop();
+                    player1.Shop(weatherForecast);
                     return ManageStand();
                 case "r":
                     player1.writeRecipe();
@@ -135,7 +136,7 @@ namespace LemonadeStand
             Console.WriteLine($"You sold {player1.cupsSoldToday} cups to {player1.customersServedToday} customers.\n");
             Console.WriteLine($"Today's revenue: ${player1.moneyEarnedToday}\nToday's costs: ${player1.moneySpentToday}\nToday's net profit: ${player1.moneyEarnedToday - player1.moneySpentToday}");
             Console.WriteLine($"Total revenue: ${player1.moneyEarnedTotal}\nTotal costs: ${player1.moneySpentTotal}\nTotal net profit: ${player1.moneyEarnedTotal - player1.moneySpentTotal}");
-            Console.WriteLine($"Today's Customer Satisfaction: ${player1.todayCustomerSatisfaction}\nPopularity: {player1.popularity}");
+            Console.WriteLine($"Today's Customer Satisfaction: {player1.todayCustomerSatisfaction}\nPopularity: {player1.popularity}");
         }
 
         private void PrintGameResults()
