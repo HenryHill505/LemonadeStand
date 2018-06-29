@@ -189,29 +189,34 @@ namespace LemonadeStand
                     todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
                     Console.WriteLine($"Begin Day {dayCounter}");
                     Console.ReadLine();
-                    //period loop
-                    for (int i = 1; i <= periodsPerDay; i++)
-                    {
-                        StartPeriod(i);
-                        ShortageAlert();
-                        //customer loop
-                        for (int j = 0; j < todayCustomerTraffic / periodsPerDay; j++)
-                        {
-                            customer = new Customer(randomizer);
+                    RunPeriod();
 
-                            if (player1.lemonadeCupPrice <= SetCustomerPrice())
-                            {
-                                    player1.ServeCustomer(customer.cupsDesired);
-                                    player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
-                            }
-                        }
-                        WrapUpPeriod(i);
-                    }
                     WrapUpDay();
                     Console.ReadLine();
                 }
             }
             PrintGameResults();
+        }
+
+        public void RunPeriod()
+        {
+            for (int i = 1; i <= periodsPerDay; i++)
+            {
+                StartPeriod(i);
+                ShortageAlert();
+                //customer loop
+                for (int j = 0; j < todayCustomerTraffic / periodsPerDay; j++)
+                {
+                    customer = new Customer(randomizer);
+
+                    if (player1.lemonadeCupPrice <= SetCustomerPrice())
+                    {
+                        player1.ServeCustomer(customer.cupsDesired);
+                        player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
+                    }
+                }
+                WrapUpPeriod(i);
+            }
         }
 
         public void WrapUpDay()

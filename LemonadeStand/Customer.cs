@@ -28,7 +28,7 @@ namespace LemonadeStand
 
         public int GetSatisfaction(int lemon, int sugar, int ice)
         {
-            return (actualLemonsDesired-lemon) + (actualSugarDesired-sugar) + (actualIceDesired-ice);
+            return (lemon-actualLemonsDesired) + (sugar-actualSugarDesired) + (ice-actualIceDesired);
         }
 
         public int SetCupsDesired(Random randomizer)
