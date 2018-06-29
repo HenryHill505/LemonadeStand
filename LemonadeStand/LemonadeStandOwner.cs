@@ -84,6 +84,33 @@ namespace LemonadeStand
             return false;
         }
 
+        public void ChangePrice()
+        {
+            Console.WriteLine("Change the price of lemonade before the period begins? (Yes/No))");
+            string userInput = Console.ReadLine().ToLower();
+            switch (userInput)
+            {
+                case "yes":
+                    try
+                    {
+                        SetPrice();
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Error. Enter new price in decimal format");
+                        ChangePrice();
+                    }
+
+                    break;
+                case "no":
+                    break;
+                default:
+                    Console.WriteLine("Please Enter Yes or No");
+                    ChangePrice();
+                    break;
+            }
+        }
+
         public bool MakePitcher()
         {
             if (inventory[1].amountOwned >= currentRecipe.lemonsPerPitcher && inventory[2].amountOwned >= currentRecipe.sugarPerPitcher)
@@ -177,7 +204,7 @@ namespace LemonadeStand
             }
         }
 
-        public void Shop(string weatherForecast)
+        public virtual void Shop(string weatherForecast)
         {
             UI.ClearPrint(weatherForecast);
             Console.WriteLine($"Select an item by it's number, or type 'done'\n${money} Remaining");
