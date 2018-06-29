@@ -34,6 +34,18 @@ namespace LemonadeStand
             lemonadeCupPrice = .25;
         }
 
+        public double Money
+        {
+            get
+            {
+                return money;
+            }
+            set
+            {
+                money = Math.Round(value, 2);
+            }
+        }
+
         public void BuyItem(int userChoice)
         {
             Item chosenItem = inventory[userChoice];
@@ -52,7 +64,7 @@ namespace LemonadeStand
             if (money > selectedItem.bundleAndPrice[bundleChoice, 1])
             {
                 selectedItem.amountOwned += selectedItem.bundleAndPrice[bundleChoice, 0];
-                money -= selectedItem.bundleAndPrice[bundleChoice, 1];
+                Money -= selectedItem.bundleAndPrice[bundleChoice, 1];
                 moneySpentToday += selectedItem.bundleAndPrice[bundleChoice, 1];
             }
             else
@@ -101,7 +113,7 @@ namespace LemonadeStand
                 inventory[0].amountOwned--;
                 inventory[3].amountOwned -= currentRecipe.icePerCup;
                 cupsInPitcher--;
-                money += lemonadeCupPrice;
+                Money += lemonadeCupPrice;
                 moneyEarnedToday += lemonadeCupPrice;
                 cupsSoldThisPeriod++;
                 cupsSoldToday++;
