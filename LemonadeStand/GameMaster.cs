@@ -46,32 +46,7 @@ namespace LemonadeStand
             }
         }
 
-        private void ChangePrice(LemonadeStandOwner player)
-        {
-            Console.WriteLine("Change the price of lemonade before the period begins? (Yes/No))");
-            string userInput = Console.ReadLine().ToLower();
-            switch (userInput)
-            {
-                case "yes":
-                    try
-                    {
-                        player.SetPrice();
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Error. Enter new price in decimal format");
-                        ChangePrice(player);
-                    }
-                    
-                    break;
-                case "no":
-                    break;
-                default:
-                    Console.WriteLine("Please Enter Yes or No");
-                    ChangePrice(player);
-                    break;
-            }
-        }
+   
 
         private void DisplayRules()
         {
@@ -214,7 +189,7 @@ namespace LemonadeStand
         {
             UI.ClearPrint($"Begin Period {periodNumber}");
             Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
-            ChangePrice(player);
+            player.ChangePrice();
         }
 
         public void RunGame()
