@@ -16,7 +16,17 @@ namespace LemonadeStand
             this.randomizer = randomizer;
         }
 
-        public override void Shop(string weatherForecast)
+        public override void ChangePrice()
+        {
+
+        }
+
+        public override void ManageStand(string weatherForecast)
+        {
+            Shop();
+        }
+
+        public void Shop()
         {
             foreach (Item item in inventory)
             {
@@ -27,11 +37,6 @@ namespace LemonadeStand
                     BuyItemBundle(item, buyIndex);
                 }
             }
-        }
-
-        public override void ChangePrice()
-        {
-            
         }
     }
 }

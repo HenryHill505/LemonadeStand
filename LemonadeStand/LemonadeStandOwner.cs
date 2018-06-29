@@ -123,7 +123,7 @@ namespace LemonadeStand
             return false;
         }
 
-        public void ManageStand(string weatherForecast)
+        public virtual void ManageStand(string weatherForecast)
         {
             UI.ClearPrint(weatherForecast);
             Console.WriteLine("What would you like to do?\n(S)hop for Supplies\nChange (R)ecipe\nSet (P)rice\nStart (D)ay\nDeclare (B)ankruptcy");
@@ -221,7 +221,7 @@ namespace LemonadeStand
             }
         }
 
-        public void SetPrice()
+        public virtual void SetPrice()
         {
             try
             {
