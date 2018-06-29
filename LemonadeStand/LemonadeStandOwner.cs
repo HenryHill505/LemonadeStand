@@ -117,7 +117,7 @@ namespace LemonadeStand
                 moneyEarnedToday += lemonadeCupPrice;
                 cupsSoldThisPeriod++;
                 cupsSoldToday++;
-                customersServedToday++;
+                
             }
         }
 
@@ -126,6 +126,7 @@ namespace LemonadeStand
             if (cupsInPitcher > 0)
             {
                 customersServedThisPeriod++;
+                customersServedToday++;
             }
 
             for (int i = 0; i < cupsToSell; i++)
@@ -140,6 +141,7 @@ namespace LemonadeStand
                     if (MakePitcher())
                     {
                         customersServedThisPeriod++;
+                        customersServedToday++;
                         for (int k = 0; k < cupsToSell; k++)
                         {
                             SellCup();
