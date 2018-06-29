@@ -33,7 +33,12 @@ namespace LemonadeStand
 
         public int SetCupsDesired(Random randomizer)
         {
-            return randomizer.Next(1,4);
+            if (randomizer.Next(0, 4) < 1)
+            {
+                return randomizer.Next(1, 4);
+            }
+            return 1;
+            
         }
 
         public double SetMaxPrice(Random randomizer)
