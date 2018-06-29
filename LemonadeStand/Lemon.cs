@@ -21,8 +21,20 @@ namespace LemonadeStand
             if (randomObject.Next(0, 3) < 1)
             {
                 int amountSpoiled = randomObject.Next(1, 5);
-                amountOwned -= amountSpoiled;
-                Console.WriteLine($"{amountSpoiled} of your lemons spoiled.");
+                if (amountOwned <= 0)
+                {
+
+                }
+                else if (amountSpoiled >= amountOwned)
+                {
+                    amountOwned = 0;
+                    Console.WriteLine($"All of your lemons spoiled.");
+                }
+                else
+                {
+                    amountOwned -= amountSpoiled;
+                    Console.WriteLine($"{amountSpoiled} of your lemons spoiled.");
+                }
             }
         }
     }

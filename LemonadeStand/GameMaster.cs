@@ -110,16 +110,13 @@ namespace LemonadeStand
             {
                 case "s":
                     player1.Shop();
-                    ManageStand();
-                    return false;
+                    return ManageStand();
                 case "r":
                     player1.writeRecipe();
-                    ManageStand();
-                    return false;
+                    return ManageStand();
                 case "p":
                     player1.SetPrice();
-                    ManageStand();
-                    return false;
+                    return ManageStand();
                 case "d":
                     return false;
                 case "b":

@@ -20,8 +20,11 @@ namespace LemonadeStand
             Random randomObject = new Random();
             if (randomObject.Next(0, 5) < 1)
             {
-                amountOwned = 0;
-                Console.WriteLine("Bugs in the sugar. You've lost it all!");
+                if (amountOwned > 0)
+                {
+                    amountOwned = 0;
+                    Console.WriteLine("Bugs in the sugar. You've lost it all!");
+                }
             }
         }
     }
