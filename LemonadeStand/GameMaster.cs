@@ -242,7 +242,7 @@ namespace LemonadeStand
             }
  
             todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
-            Console.WriteLine($"Begin Day {dayCounter}");
+            UI.ClearPrint($"Begin Day {dayCounter}");
             Console.ReadLine();
             foreach (LemonadeStandOwner player in players)
             {
