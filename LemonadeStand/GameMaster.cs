@@ -15,7 +15,7 @@ namespace LemonadeStand
         int dayLimit;
         int periodsPerDay;
         int todayCustomerTraffic;
-        LemonadeStandOwner player1;
+        List<LemonadeStandOwner> players;
         Random randomizer;
 
         public GameMaster()
@@ -23,31 +23,30 @@ namespace LemonadeStand
             baseDailyCustomerTraffic = 60;
             dayCounter = 1;
             periodsPerDay = 4;
-            player1 = new LemonadeStandOwner();
             randomizer = new Random();
         }
 
-        private void ShortageAlert()
+        private void ShortageAlert(LemonadeStandOwner player)
         {
-            if (player1.inventory[0].amountOwned <= 0)
+            if (player.inventory[0].amountOwned <= 0)
             {
                 Console.WriteLine("You're out of cups!");
             }
-            if (player1.inventory[1].amountOwned < player1.currentRecipe.lemonsPerPitcher)
+            if (player.inventory[1].amountOwned < player.currentRecipe.lemonsPerPitcher)
             {
                 Console.WriteLine("You don't have enough lemons to make another pitcher!");
             }
-            if (player1.inventory[2].amountOwned < player1.currentRecipe.sugarPerPitcher)
+            if (player.inventory[2].amountOwned < player.currentRecipe.sugarPerPitcher)
             {
                 Console.WriteLine("You don't have enough sugar to make another pitcher!");
             }
-            if (player1.inventory[3].amountOwned < player1.currentRecipe.icePerCup)
+            if (player.inventory[3].amountOwned < player.currentRecipe.icePerCup)
             {
                 Console.WriteLine("You don't have enough ice to pour another cup!");
             }
         }
 
-        private void ChangePrice()
+        private void ChangePrice(LemonadeStandOwner player)
         {
             Console.WriteLine("Change the price of lemonade before the period begins? (Yes/No))");
             string userInput = Console.ReadLine().ToLower();
@@ -56,12 +55,12 @@ namespace LemonadeStand
                 case "yes":
                     try
                     {
-                        player1.SetPrice();
+                        player.SetPrice();
                     }
                     catch (FormatException)
                     {
                         Console.WriteLine("Error. Enter new price in decimal format");
-                        ChangePrice();
+                        ChangePrice(player);
                     }
                     
                     break;
@@ -69,7 +68,7 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Please Enter Yes or No");
-                    ChangePrice();
+                    ChangePrice(player);
                     break;
             }
         }
@@ -80,6 +79,23 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
+        private void GetPlayerCount()
+        {
+            Console.WriteLine("Is this a 1 or 2 player game");
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    players = new List<LemonadeStandOwner> { new LemonadeStandOwner() };
+                    break;
+                case "2":
+                    players = new List<LemonadeStandOwner> { new LemonadeStandOwner(), new LemonadeStandOwner() };
+                    break;
+                default:
+                    Console.WriteLine("Error. Enter either 1 or 2 for the player count");
+                    break;
+            }
+        }
         private void GetDayLimit()
         {   
 
@@ -96,11 +112,14 @@ namespace LemonadeStand
 
         private void GetPlayerName()
         {
-            Console.WriteLine("Enter your name:");
-            player1.name = Console.ReadLine();
+            for (int i = 0; i < players.Count; i++)
+            {
+                Console.WriteLine($"Player {i+1}, enter your name:");
+                players[i].name = Console.ReadLine();
+            }
         }
 
-        public bool ManageStand()
+        public bool ManageStand(LemonadeStandOwner player)
         {
             string weatherForecast = $"Weather Forecast: {today.forecastWeather.name}\nTemperature Forecast: {today.forecastTemperature}\n";
             UI.ClearPrint(weatherForecast);
@@ -110,49 +129,69 @@ namespace LemonadeStand
             switch (userInput)
             {
                 case "s":
-                    player1.Shop(weatherForecast);
-                    return ManageStand();
+                    player.Shop(weatherForecast);
+                    return ManageStand(player);
                 case "r":
-                    player1.writeRecipe();
-                    return ManageStand();
+                    player.writeRecipe();
+                    return ManageStand(player);
                 case "p":
-                    player1.SetPrice();
-                    return ManageStand();
+                    player.SetPrice();
+                    return ManageStand(player);
                 case "d":
                     return false;
                 case "b":
-                    UI.ClearPrint($"You declare bankruptcy! {player1.name}'s lemonade stand is finished!");
+                    UI.ClearPrint($"You declare bankruptcy! {player.name}'s lemonade stand is finished!");
                     return true;
                 default:
                     Console.WriteLine("Not a valid command. Please pick S, R, P, D, or B");
                     Console.ReadLine();
-                    return ManageStand();
+                    return ManageStand(player);
             }
         }
 
-        private void PrintDayResults()
+        private void PrintDayResults(LemonadeStandOwner player)
         {
             UI.ClearPrint($"Day {dayCounter} results");
-            Console.WriteLine($"You sold {player1.cupsSoldToday} cups to {player1.customersServedToday} customers.\n");
-            Console.WriteLine($"Today's revenue: ${player1.moneyEarnedToday}\nToday's costs: ${player1.moneySpentToday}\nToday's net profit: ${player1.moneyEarnedToday - player1.moneySpentToday}");
-            Console.WriteLine($"Total revenue: ${player1.moneyEarnedTotal}\nTotal costs: ${player1.moneySpentTotal}\nTotal net profit: ${player1.moneyEarnedTotal - player1.moneySpentTotal}");
-            Console.WriteLine($"Today's Customer Satisfaction: {player1.todayCustomerSatisfaction}\nPopularity: {player1.popularity}");
+            Console.WriteLine($"You sold {player.cupsSoldToday} cups to {player.customersServedToday} customers.\n");
+            Console.WriteLine($"Today's revenue: ${player.moneyEarnedToday}\nToday's costs: ${player.moneySpentToday}\nToday's net profit: ${player.moneyEarnedToday - player.moneySpentToday}");
+            Console.WriteLine($"Total revenue: ${player.moneyEarnedTotal}\nTotal costs: ${player.moneySpentTotal}\nTotal net profit: ${player.moneyEarnedTotal - player.moneySpentTotal}");
+            Console.WriteLine($"Today's Customer Satisfaction: {player.todayCustomerSatisfaction}\nPopularity: {player.popularity}");
         }
 
         private void PrintGameResults()
         {
-            Console.WriteLine("End of Season Report");
-            Console.WriteLine($"Total Revenue: {player1.moneyEarnedTotal}\nTotal Costs: {player1.moneySpentTotal}\nNet Profit/Loss: {player1.moneyEarnedTotal - player1.moneySpentTotal}");
-            Console.ReadLine();
+            foreach (LemonadeStandOwner player in players)
+            {
+                Console.WriteLine("End of Season Report");
+                Console.WriteLine($"Total Revenue: {player.moneyEarnedTotal}\nTotal Costs: {player.moneySpentTotal}\nNet Profit/Loss: {player.moneyEarnedTotal - player.moneySpentTotal}");
+                Console.ReadLine();
+            }
         }
 
-        private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold)
+        private void PrintPeriodResults(int periodNumber, int customersServed, int TotalCustomers, int cupsSold, LemonadeStandOwner player)
         {
             
-            Console.WriteLine($"{TotalCustomers} people pass {player1.name}'s Lemonade Stand.");
-            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bringing your funds to {player1.money}\n");
-            player1.PrintInventory();
+            Console.WriteLine($"{TotalCustomers} people pass {player.name}'s Lemonade Stand.");
+            Console.WriteLine($"{customersServed} people purchase your lemonade.\nThey buy {cupsSold} cups of lemonade, bringing your funds to {player.money}\n");
+            player.PrintInventory();
             Console.ReadLine();
+        }
+        private void PrintWinner()
+        {
+            if (players.Count > 1)
+            {
+                double topScore = 0;
+                string winner = "";
+                foreach (LemonadeStandOwner player in players)
+                {
+                    if (player.Money > topScore)
+                    {
+                        topScore = player.Money;
+                        winner = player.name;
+                    }
+                }
+                Console.WriteLine($"{winner} won with ${topScore}!");
+            }
         }
 
         private double SetCustomerPrice()
@@ -164,85 +203,92 @@ namespace LemonadeStand
 
         }
 
-        public void StartPeriod(int periodNumber)
+        public void StartPeriod(int periodNumber, LemonadeStandOwner player)
         {
             UI.ClearPrint($"Begin Period {periodNumber}");
             Console.WriteLine($"It is {today.actualWeather.name}\nIt is {today.actualTemperature} degrees");
-            ChangePrice();
+            ChangePrice(player);
         }
 
         public void RunGame()
         {
             DisplayRules();
-            GetPlayerName();
             GetDayLimit();
+            GetPlayerName();
+            
             while (dayCounter <= dayLimit)
             {
                 RunDay();
             }
             PrintGameResults();
+            PrintWinner();
         }
 
         public void RunDay()
         {
             today = new Day();
-            bool isBankrupt = ManageStand();
-            if (isBankrupt)
+            foreach (LemonadeStandOwner player in players)
             {
-                dayCounter = dayLimit + 1;
+                if (!player.isBankrupt) { ManageStand(player); }
             }
-            else
+ 
+            todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50);
+            Console.WriteLine($"Begin Day {dayCounter}");
+            Console.ReadLine();
+            foreach (LemonadeStandOwner player in players)
             {
-                todayCustomerTraffic = baseDailyCustomerTraffic + today.actualWeather.customerTrafficModifier + (today.actualTemperature - 50) + player1.popularity;
-                Console.WriteLine($"Begin Day {dayCounter}");
-                Console.ReadLine();
-                RunPeriod();
-                WrapUpDay();
-                Console.ReadLine();
+                if (!player.isBankrupt) { RunPeriods(player); }
             }
+            foreach (LemonadeStandOwner player in players)
+            {
+                if (!player.isBankrupt) { WrapUpDay(player); }
+            }
+            Console.ReadLine();
         }
 
-        public void RunPeriod()
+        public void RunPeriods(LemonadeStandOwner player)
         {
+            Console.WriteLine($"{player.name}'s turn.");
+            Console.ReadLine();
             for (int i = 1; i <= periodsPerDay; i++)
             {
-                StartPeriod(i);
-                ShortageAlert();
+                StartPeriod(i, player);
+                ShortageAlert(player);
                 //customer loop
-                for (int j = 0; j < todayCustomerTraffic / periodsPerDay; j++)
+                for (int j = 0; j < (todayCustomerTraffic + player.popularity) / periodsPerDay; j++)
                 {
                     customer = new Customer(randomizer);
 
-                    if (player1.lemonadeCupPrice <= SetCustomerPrice())
+                    if (player.lemonadeCupPrice <= SetCustomerPrice())
                     {
-                        player1.ServeCustomer(customer.cupsDesired);
-                        player1.todayCustomerSatisfaction = customer.GetSatisfaction(player1.currentRecipe.lemonsPerPitcher, player1.currentRecipe.sugarPerPitcher, player1.currentRecipe.icePerCup);
+                        player.ServeCustomer(customer.cupsDesired);
+                        player.todayCustomerSatisfaction = customer.GetSatisfaction(player.currentRecipe.lemonsPerPitcher, player.currentRecipe.sugarPerPitcher, player.currentRecipe.icePerCup);
                     }
                 }
-                WrapUpPeriod(i);
+                WrapUpPeriod(i, player);
             }
         }
 
-        public void WrapUpDay()
+        public void WrapUpDay(LemonadeStandOwner player)
         {
-            player1.moneyEarnedTotal += player1.moneyEarnedToday;
-            player1.moneySpentTotal += player1.moneySpentToday;
-            player1.popularity += player1.todayCustomerSatisfaction;
-            PrintDayResults();
-            player1.SpoilItems();
-            player1.moneyEarnedToday = 0;
-            player1.moneySpentToday = 0;
-            player1.cupsSoldToday = 0;
-            player1.customersServedToday = 0;
-            player1.todayCustomerSatisfaction = 0;
+            player.moneyEarnedTotal += player.moneyEarnedToday;
+            player.moneySpentTotal += player.moneySpentToday;
+            player.popularity += player.todayCustomerSatisfaction;
+            PrintDayResults(player);
+            player.SpoilItems();
+            player.moneyEarnedToday = 0;
+            player.moneySpentToday = 0;
+            player.cupsSoldToday = 0;
+            player.customersServedToday = 0;
+            player.todayCustomerSatisfaction = 0;
             dayCounter++;
         }
-        public void WrapUpPeriod(int periodNumber)
+        public void WrapUpPeriod(int periodNumber, LemonadeStandOwner player)
         {
-            PrintPeriodResults(periodNumber, player1.customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, player1.cupsSoldThisPeriod);
+            PrintPeriodResults(periodNumber, player.customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, player.cupsSoldThisPeriod, player);
             
-            player1.customersServedThisPeriod = 0;
-            player1.cupsSoldThisPeriod = 0;
+            player.customersServedThisPeriod = 0;
+            player.cupsSoldThisPeriod = 0;
         }
     }
 }

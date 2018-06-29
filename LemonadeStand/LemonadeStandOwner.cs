@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     public class LemonadeStandOwner
     {
+        public bool isBankrupt;
         public double lemonadeCupPrice;
         public double money;
         public double moneyEarnedToday;
@@ -30,6 +31,7 @@ namespace LemonadeStand
         {
             currentRecipe = new Recipe();
             inventory = new List<Item> { new PaperCup(), new Lemon(), new Sugar(), new Ice()};
+            isBankrupt = false;
             money = 20;
             lemonadeCupPrice = .25;
         }
