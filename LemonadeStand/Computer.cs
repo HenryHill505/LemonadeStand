@@ -21,6 +21,11 @@ namespace LemonadeStand
 
         }
 
+        public override void GetName()
+        {
+            
+        }
+
         public override void ManageStand(string weatherForecast)
         {
             Shop();

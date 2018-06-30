@@ -56,7 +56,7 @@ namespace LemonadeStand
 
         private void GetPlayerCount()
         {
-            Console.WriteLine("Is this a 1, 2 player game, or a computer");
+            Console.WriteLine("Enter the number of players. Enter 'computer' to play against the computer");
             string userInput = Console.ReadLine();
             switch (userInput)
             {

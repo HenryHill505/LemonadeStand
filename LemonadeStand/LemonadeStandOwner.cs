@@ -111,6 +111,12 @@ namespace LemonadeStand
             }
         }
 
+        public virtual void GetName()
+        {
+            Console.WriteLine($"Enter your name:");
+            name = Console.ReadLine();
+        }
+
         public bool MakePitcher()
         {
             if (inventory[1].amountOwned >= currentRecipe.lemonsPerPitcher && inventory[2].amountOwned >= currentRecipe.sugarPerPitcher)
