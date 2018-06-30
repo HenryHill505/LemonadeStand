@@ -93,8 +93,8 @@ namespace LemonadeStand
         {
             for (int i = 0; i < players.Count; i++)
             {
-                Console.WriteLine($"Player {i+1}, enter your name:");
-                players[i].name = Console.ReadLine();
+                Console.Write($"Player {i+1}, ");
+                players[0].GetName();
             }
         }
 

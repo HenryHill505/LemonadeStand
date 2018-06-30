@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Computer : LemonadeStandOwner
+    public class Computer : LemonadeStandOwner
     {
         Random randomizer;
         public Computer(Random randomizer) 
             :base()
         {
-            this.name = "Computer";
             this.randomizer = randomizer;
         }
 
@@ -23,7 +22,7 @@ namespace LemonadeStand
 
         public override void GetName()
         {
-            
+            name = "Computer";
         }
 
         public override void ManageStand(string weatherForecast)
