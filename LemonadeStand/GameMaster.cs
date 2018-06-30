@@ -68,6 +68,7 @@ namespace LemonadeStand
                     break;
                 case "computer":
                     players = new List<LemonadeStandOwner> { new LemonadeStandOwner(), new Computer(randomizer) };
+                    Console.ReadLine();
                     break;
                 default:
                     Console.WriteLine("Error. Enter either 1, 2, or computer");
@@ -94,7 +95,7 @@ namespace LemonadeStand
             for (int i = 0; i < players.Count; i++)
             {
                 Console.Write($"Player {i+1}, ");
-                players[0].GetName();
+                players[i].GetName();
             }
         }
 
@@ -104,7 +105,7 @@ namespace LemonadeStand
         {
 
             
-            if (players.Count > 1) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
+            if (players.Count > 1 ) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
             Console.WriteLine($"You sold {player.cupsSoldToday} cups to {player.customersServedToday} customers.\n");
             Console.WriteLine($"Today's revenue: ${player.moneyEarnedToday}\nToday's costs: ${player.moneySpentToday}\nToday's net profit: ${player.moneyEarnedToday - player.moneySpentToday}");
             Console.WriteLine($"Total revenue: ${player.moneyEarnedTotal}\nTotal costs: ${player.moneySpentTotal}\nTotal net profit: ${player.moneyEarnedTotal - player.moneySpentTotal}");
@@ -187,7 +188,7 @@ namespace LemonadeStand
             {
                 if (!player.isBankrupt)
                 {
-                    if (players.Count > 1) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
+                    if (players.Count > 1 && player.GetType() != typeof(Computer)) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
                     player.ManageStand(weatherForecast);
                 }
             }
