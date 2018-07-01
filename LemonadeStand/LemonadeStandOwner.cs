@@ -270,6 +270,7 @@ namespace LemonadeStand
             foreach(Item item in inventory)
             {
                 item.Spoil();
+                Console.ReadLine();
             }
         }
 
