@@ -270,8 +270,8 @@ namespace LemonadeStand
             foreach(Item item in inventory)
             {
                 item.Spoil();
-                Console.ReadLine();
             }
+            Console.ReadLine();
         }
 
         public void writeRecipe()
