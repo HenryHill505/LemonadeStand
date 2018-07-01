@@ -68,7 +68,6 @@ namespace LemonadeStand
                     break;
                 case "computer":
                     players = new List<LemonadeStandOwner> { new LemonadeStandOwner(), new Computer(randomizer) };
-                    Console.ReadLine();
                     break;
                 default:
                     Console.WriteLine("Error. Enter either 1, 2, or computer");
@@ -103,13 +102,12 @@ namespace LemonadeStand
 
         private void PrintDayResults(LemonadeStandOwner player)
         {
-
-            
-            if (players.Count > 1 ) { UI.ClearPrint($"{player.name}'s turn"); Console.ReadLine(); }
+            if (players.Count > 1 ) { UI.ClearPrint($"{player.name}'s results"); Console.ReadLine(); }
             Console.WriteLine($"You sold {player.cupsSoldToday} cups to {player.customersServedToday} customers.\n");
             Console.WriteLine($"Today's revenue: ${player.moneyEarnedToday}\nToday's costs: ${player.moneySpentToday}\nToday's net profit: ${player.moneyEarnedToday - player.moneySpentToday}");
             Console.WriteLine($"Total revenue: ${player.moneyEarnedTotal}\nTotal costs: ${player.moneySpentTotal}\nTotal net profit: ${player.moneyEarnedTotal - player.moneySpentTotal}");
             Console.WriteLine($"Today's Customer Satisfaction: {player.todayCustomerSatisfaction}\nPopularity: {player.popularity}");
+            Console.ReadLine();
         }
 
         private void PrintGameResults()
@@ -176,6 +174,7 @@ namespace LemonadeStand
             {
                 RunDay();
             }
+            Console.Clear();
             PrintGameResults();
             PrintWinner();
         }
@@ -205,6 +204,7 @@ namespace LemonadeStand
                 if (!player.isBankrupt) { WrapUpDay(player); }
             }
             Console.ReadLine();
+            dayCounter++;
         }
 
         public void RunPeriods(LemonadeStandOwner player)
@@ -242,11 +242,10 @@ namespace LemonadeStand
             player.cupsSoldToday = 0;
             player.customersServedToday = 0;
             player.todayCustomerSatisfaction = 0;
-            dayCounter++;
         }
         public void WrapUpPeriod(int periodNumber, LemonadeStandOwner player)
         {
-            PrintPeriodResults(periodNumber, player.customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, player.cupsSoldThisPeriod, player);
+            if (player.GetType() != typeof(Computer)) { PrintPeriodResults(periodNumber, player.customersServedThisPeriod, todayCustomerTraffic / periodsPerDay, player.cupsSoldThisPeriod, player); }
             
             player.customersServedThisPeriod = 0;
             player.cupsSoldThisPeriod = 0;
